@@ -1,8 +1,23 @@
+* {
+  text-align: center
+}
+
+a {
+  color: #8be9fd;
+}
+
+body {
+  background-color: #282a36;
+  color: #f8f8f2;
+  font-family: "Verdana";
+}
+
 table {
-    border: 1px;
+  border: 1px;
 }
 
 th {
-    border: 1px dashed black;
-    padding: 4px;
+  background-color: #f8f8f2;
+  border: 1px dashed black;
+  padding: 4px;
 }
