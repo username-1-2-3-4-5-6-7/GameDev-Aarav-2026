@@ -22,3 +22,7 @@ th {
   border: 1px dashed black;
   padding: 4px;
 }
+
+ul {
+    list-style-position: inside;
+}
