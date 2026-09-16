@@ -16,8 +16,13 @@
       type="button"
       value="Change CSS"
       onClick="{
-          document.getElementById('i').style.color = 'red'
-          document.getElementById('i').style.backgroundColor = 'yellow'
+          if (document.getElementById('i').style.color === 'red') {
+              document.getElementById('i').style.color = ''#00ff00';
+              document.getElementById('i').style.backgroundColor = 'blue';
+          } else {
+              document.getElementById('i').style.color = ''#red';
+              document.getElementById('i').style.backgroundColor = 'yellow';
+          }
       }"
     />
     <textarea
