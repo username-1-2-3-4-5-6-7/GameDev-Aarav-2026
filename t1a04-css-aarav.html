@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GameDev: Aarav (2026)</title>
+  </head>
+  <body>
+    <h1>GameDev: Aarav (2026) - `t1a04-css-aarav`</h1>
+    <i>This is italicized</i>
+    <i id="i" style="color: #00ff00; background-color: blue"
+      >This is italicized... but with different CSS
+    </i>
+    <input
+      type="button"
+      value="Change CSS"
+      onClick="{
+          document.getElementById('i').style.color = 'red'
+          document.getElementById('i').style.backgroundColor = 'yellow'
+      }"
+    />
+    <textarea
+      style="
+        background-image: url(&quot;assets/jpeg444.jpg&quot;);
+        position: relative;
+        left: 0;
+        top: 0;
+        width: 256px;
+        height: 256px;
+      "
+    ></textarea>
+    <img src="assets/test.jpg" width="256" style="border-radius: 256px" />
+  </body>
+</html>
