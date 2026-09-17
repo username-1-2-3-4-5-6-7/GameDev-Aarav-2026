@@ -8,33 +8,39 @@
   </head>
   <body>
     <h1>GameDev: Aarav (2026) - `t1a04-css-aarav`</h1>
-    <i>This is italicized</i>
-    <i id="i" style="color: #00ff00; background-color: blue"
-      >This is italicized... but with different CSS
-    </i>
-    <input
-      type="button"
-      value="Change CSS"
-      onClick="{
-          if (document.getElementById('i').style.color === 'red') {
-              document.getElementById('i').style.color = ''#00ff00';
-              document.getElementById('i').style.backgroundColor = 'blue';
+    <div>
+      <i>This is italicized</i>
+      <br />
+      <i id="i" style="color: rgb(0, 255, 0); background-color: blue"
+        >This is italicized... but with different CSS
+      </i>
+      <br />
+      <input
+        type="button"
+        value="Switch CSS (Try Clicking Me Multiple Times!)"
+        onClick="{
+          if (getComputedStyle(document.getElementById('i')).color === 'rgb(255, 0, 0)') {
+              document.getElementById('i').style.color = 'rgb(0, 255, 0)';
+              document.getElementById('i').style.backgroundColor = 'rgb(0, 0, 255)';
           } else {
-              document.getElementById('i').style.color = ''#red';
-              document.getElementById('i').style.backgroundColor = 'yellow';
+              document.getElementById('i').style.color = 'rgb(255, 0, 0)';
+              document.getElementById('i').style.backgroundColor = 'rgb(255, 255, 0)';
           }
       }"
-    />
+      />
+    </div>
+    <br />
     <textarea
       style="
         background-image: url(&quot;assets/jpeg444.jpg&quot;);
-        position: relative;
+        color: white;
+        height: 256px;
         left: 0;
+        position: relative;
         top: 0;
         width: 256px;
-        height: 256px;
       "
     ></textarea>
-    <img src="assets/test.jpg" width="256" style="border-radius: 256px" />
+    <img src="assets/test.jpg" style="border-radius: 128px" />
   </body>
 </html>
