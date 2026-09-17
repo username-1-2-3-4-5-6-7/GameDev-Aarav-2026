@@ -1,5 +1,5 @@
 * {
-  text-align: center
+  text-align: center;
 }
 
 a {
@@ -12,17 +12,21 @@ body {
   font-family: "Verdana";
 }
 
+br {
+  user-select: none;
+}
+
 table {
   border: 1px;
 }
 
 th {
-  color: #8be9fd;
   background-color: #f8f8f2;
   border: 1px dashed black;
+  color: #8be9fd;
   padding: 4px;
 }
 
 ul {
-    list-style-position: inside;
+  list-style-position: inside;
 }
