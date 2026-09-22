@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>GameDev: Aarav (2026)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
     <script>
       function sayHello() {
         const myNum = 6;
@@ -13,18 +14,29 @@
         const myBool = false;
 
         let myOut = document.getElementById("myDiv01");
-        myOut.innerHTML = myNum + myString + myFloat + ", " + myBool;
+
+        // Backticks to format
+        myOut.innerHTML = `${myNum}, ${myString}, ${myFloat}, ${myBool}`;
 
         // Never true.
         if (myBool) {
           myOut.innerHTML += ", WOW!";
         }
+      }
     </script>
   </head>
   <body>
     <h1>GameDev: Aarav (2026)</h1>
     <p>This is <b>bold</b> text!</p>
     <button onClick="sayHello()">Click Me</button>
-    <div id="myDiv01">...</div>
+    <br />
+    <br />
+    <div id="myDiv01">Hello, World!</div>
+    <br />
+    <br />
+    <div id="myDiv02">
+      This is an <bold>animation</bold>:
+      <script src="js/spinning_triangle.js"></script>
+    </div>
   </body>
 </html>
