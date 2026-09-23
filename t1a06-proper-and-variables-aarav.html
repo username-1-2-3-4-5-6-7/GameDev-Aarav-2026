@@ -7,10 +7,10 @@
     <title>GameDev: Aarav (2026)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
     <script>
-      let animationType = 0;
+      let angleDelta = 1;
 
-      function getAnimationType() {
-        return animationType;
+      function getAngleDelta() {
+        return angleDelta;
       }
 
       function sayHello() {
@@ -43,18 +43,20 @@
     <div id="myDiv02">
       This is an <bold>animation</bold>:
       <script src="js/spinning_triangle.js"></script>
+      <input
+        value="-"
+        onClick="{
+        angleDelta -= 1;
+      }"
+      />
+      <input
+        type="button"
+        value="+"
+        onClick="{
+          angleDelta += 1;
+        }"
+      />
+      >
     </div>
-    <button
-      onClick="{
-      // Terrible
-      if (animationType === 1) {
-        animationType = 0;
-      } else {
-        animationType = 1
-      }
-    }"
-    >
-      Click Me
-    </button>
   </body>
 </html>
