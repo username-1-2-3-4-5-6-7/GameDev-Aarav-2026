@@ -7,7 +7,7 @@
     <title>GameDev: Aarav (2026)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
     <script>
-      let angleDelta = 1;
+      let angleDelta = 0.1;
 
       function getAngleDelta() {
         return angleDelta;
@@ -47,14 +47,14 @@
         type="button"
         value="-"
         onClick="{
-          angleDelta -= 1;
+          angleDelta -= 0.1;
         }"
       />
       <input
         type="button"
         value="+"
         onClick="{
-          angleDelta += 1;
+          angleDelta += 0.1;
         }"
       />
       >
