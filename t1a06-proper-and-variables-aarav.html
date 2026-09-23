@@ -7,6 +7,12 @@
     <title>GameDev: Aarav (2026)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
     <script>
+      let animationType = 0;
+
+      function getAnimationType() {
+        return animationType;
+      }
+
       function sayHello() {
         const myNum = 6;
         const myString = "Hello, World";
@@ -38,5 +44,17 @@
       This is an <bold>animation</bold>:
       <script src="js/spinning_triangle.js"></script>
     </div>
+    <button
+      onClick="{
+      // Terrible
+      if (animationType === 1) {
+        animationType = 0;
+      } else {
+        animationType = 1
+      }
+    }"
+    >
+      Click Me
+    </button>
   </body>
 </html>
