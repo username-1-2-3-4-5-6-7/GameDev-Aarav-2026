@@ -86,7 +86,12 @@
           };
 
           p.draw = () => {
-            p.image(video, 0, 0, 160, 90);
+            if (
+              video &&
+              video.elt.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+            ) {
+              p.image(video, 0, 0, 160, 90);
+            }
           };
         });
       });
