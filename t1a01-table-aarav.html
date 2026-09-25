@@ -6,31 +6,6 @@
     <meta name="viewport" content="width=device-width" />
     <title>GameDev: Aarav (2026)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
-    <script>
-      // Thanks, OpenAI
-
-      const cells = document.querySelectorAll(".p5-cell");
-
-      cells.forEach((cell, index) => {
-        new p5((p) => {
-          p.setup = () => {
-            const canvas = p.createCanvas(150, 100);
-            canvas.parent(cell);
-          };
-
-          p.draw = () => {
-            p.background(220);
-
-            p.fill(50, 100, 200);
-            p.circle(75, 50, 50);
-
-            p.fill(0);
-            p.textAlign(p.CENTER, p.CENTER);
-            p.text("Cell " + (index + 1), 75, 85);
-          };
-        });
-      });
-    </script>
   </head>
   <body>
     <h1>GameDev: Aarav (2026) - `t1a01-table-aarav`</h1>
@@ -68,6 +43,7 @@
         <th><div class="p5-cell"></div></th>
       </tr>
     </table>
+    <br />
     <table>
       <tr>
         <th><div class="p5-cell"></div></th>
@@ -88,5 +64,30 @@
         <th><div class="p5-cell"></div></th>
       </tr>
     </table>
+    <script>
+      // Thanks, OpenAI
+
+      const cells = document.querySelectorAll(".p5-cell");
+
+      cells.forEach((cell, index) => {
+        new p5((p) => {
+          p.setup = () => {
+            const canvas = p.createCanvas(150, 100);
+            canvas.parent(cell);
+          };
+
+          p.draw = () => {
+            p.background(220);
+
+            p.fill(50, 100, 200);
+            p.circle(75, 50, 50);
+
+            p.fill(0);
+            p.textAlign(p.CENTER, p.CENTER);
+            p.text("Cell " + (index + 1), 75, 85);
+          };
+        });
+      });
+    </script>
   </body>
 </html>
