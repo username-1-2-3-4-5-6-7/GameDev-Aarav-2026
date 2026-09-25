@@ -65,26 +65,22 @@
       </tr>
     </table>
     <script>
-      // Thanks, OpenAI
-
       const cells = document.querySelectorAll(".p5-cell");
 
       cells.forEach((cell, index) => {
+        // Thanks, OpenAI
         new p5((p) => {
+          let video;
+
           p.setup = () => {
-            const canvas = p.createCanvas(150, 100);
+            const canvas = p.createCanvas(160, 90);
             canvas.parent(cell);
-          };
 
-          p.draw = () => {
-            p.background(220);
+            const video = p.createVideo(["assets/beach.mp4"]);
 
-            p.fill(50, 100, 200);
-            p.circle(75, 50, 50);
-
-            p.fill(0);
-            p.textAlign(p.CENTER, p.CENTER);
-            p.text("Cell " + (index + 1), 75, 85);
+            video.size(160, 90);
+            video.loop();
+            video.parent(cell);
           };
         });
       });
