@@ -81,6 +81,12 @@
             video.size(160, 90);
             video.loop();
             video.parent(cell);
+
+            video.hide();
+          };
+
+          p.draw = () => {
+            p.image(video, 0, 0, 160, 90);
           };
         });
       });
