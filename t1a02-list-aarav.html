@@ -32,12 +32,14 @@
       <li>Gray</li>
     </ul>
     <script>
-      function preload() {
-        whale = loadImage("assets/otherWhale.png");
-      }
+      let whale;
+      let whaleX = 0;
+      let whaleSpeed = 2;
 
       function setup() {
         createCanvas(512, 256);
+
+        whale = await loadImage("assets/otherWhale.png");
       }
 
       // Thanks again, OpenAI.
@@ -45,15 +47,15 @@
         // Blue
         background(100, 180, 220);
 
-        x = x + speed;
+        whaleX = whaleX + whaleSpeed;
 
-        if (x > width - 100 || x < 0) {
-          speed = speed * -1;
+        if (whaleX > width - 100 || whaleX < 0) {
+          whaleSpeed = whaleSpeed * -1;
         }
 
-        let y = 70 + sin(frameCount * 0.05) * 10;
+        let whaleY = 70 + sin(frameCount * 0.05) * 10;
 
-        image(whale, x, y, 100, 100);
+        image(whale, whaleX, whaleY, 100, 100);
       }
     </script>
   </body>
