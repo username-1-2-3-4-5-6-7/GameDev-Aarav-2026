@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>GameDev: Aarav (2026)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
   </head>
   <body>
     <h1>GameDev: Aarav (2026) - `t1a02-list-aarav`</h1>
@@ -13,7 +14,13 @@
         <th><a href="https://happywhale.com">Happywhale</a></th>
       </tr>
       <tr>
-        <th><img src="assets/myWhale.jpg" width="67" height="67" />My Whale</th>
+        <th>
+          <div>
+            My Whale:
+            <br />
+            <img src="assets/myWhale.jpg" width="67" height="67" />
+          </div>
+        </th>
         <th></th>
       </tr>
     </table>
@@ -24,5 +31,30 @@
       <li>Bowhead</li>
       <li>Gray</li>
     </ul>
+    <script>
+      function preload() {
+        whale = loadImage("assets/otherWhale.png");
+      }
+
+      function setup() {
+        createCanvas(512, 256);
+      }
+
+      // Thanks again, OpenAI.
+      function draw() {
+        // Blue
+        background(100, 180, 220);
+
+        x = x + speed;
+
+        if (x > width - 100 || x < 0) {
+          speed = speed * -1;
+        }
+
+        let y = 70 + sin(frameCount * 0.05) * 10;
+
+        image(whale, x, y, 100, 100);
+      }
+    </script>
   </body>
 </html>
