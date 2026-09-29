@@ -36,10 +36,10 @@
       let whaleX = 0;
       let whaleSpeed = 2;
 
-      function setup() {
+      async function setup() {
         createCanvas(512, 256);
 
-        whale = loadImage("assets/otherWhale.png");
+        whale = await loadImage("assets/otherWhale.png");
       }
 
       // Thanks again, OpenAI.
