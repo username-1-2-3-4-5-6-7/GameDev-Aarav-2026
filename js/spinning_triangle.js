@@ -16,7 +16,14 @@ function draw() {
 
   let ctx = drawingContext;
 
-  let radialGradient = ctx.createRadialGradient(0, 10, 0, 0, 0, 80);
+  let radialGradient = ctx.createRadialGradient(
+    0,
+    13.333,
+    0,
+    0,
+    13.333,
+    93.333,
+  );
   radialGradient.addColorStop(0, "red");
   radialGradient.addColorStop(0.33, "orange");
   radialGradient.addColorStop(0.66, "yellow");
