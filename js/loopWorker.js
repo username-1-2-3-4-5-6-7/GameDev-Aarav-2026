@@ -1,9 +1,16 @@
-let myInput = document.getElementById("myInput");
+function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let i = 0;
 
-while (true) {
-  myInput.value = i.toString();
+async function run() {
+  let i = 0;
 
-  i++;
+  while (true) {
+    await sleep(1);
+
+    i++;
+    self.postMessage(i);
+  }
 }
+
+run();
