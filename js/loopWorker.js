@@ -1,4 +1,4 @@
-function sleep(ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let i = 0;
 
