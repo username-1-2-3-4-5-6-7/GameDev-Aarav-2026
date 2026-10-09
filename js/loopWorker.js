@@ -1,4 +1,6 @@
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 let i = 0;
 
