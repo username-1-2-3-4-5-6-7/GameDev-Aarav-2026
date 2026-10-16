@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GameDev: Aarav (2026)</title>
+  </head>
+  <body>
+    <h1>GameDev: Aarav (2026) - `t1a07-decision-aarav`</h1>
+    <h4>Example input/output code:</h4>
+    <pre>
+      let myHour = 20;
+
+      // 6 p.m.
+      if (myHour < 18) {
+        let myGreeting = "Good evening!";
+      }
+    </pre>
+    <h4>Example working code:</h4>
+    <input id="myNum01" type="number" value="4" />
+    <br />
+    <input
+      type="button"
+      value="Simple `if` statement for decision making"
+      onclick="
+        {
+          let myIn01 = parseFloat(document.getElementById('myNum01').value);
+
+          if (myIn01 >= 3) {
+            document.getElementById('myDiv01').innerHTML =
+              `${myIn01} is greater than or equal to 3!`;
+          }
+        }
+      "
+    />
+    <input
+      type="button"
+      value="`if...else`"
+      onclick="
+        {
+          let myIn01 = parseFloat(document.getElementById('myNum01').value);
+
+          if (myIn01 >= 3) {
+            document.getElementById('myDiv01').innerHTML =
+              `${myIn01} is greater than or equal to 3!`;
+          } else {
+            document.getElementById('myDiv01').innerHTML =
+              `${myIn01} is less than 3!`;
+        }
+      "
+    />
+    <input
+      type="button"
+      value="Complex `if`"
+      onclick="
+        {
+          let myIn01 = parseFloat(document.getElementById('myNum01').value);
+
+          if ((myIn01 != 3 || myIn01 > -3) && myIn01 <= 100) {
+            document.getElementById('myDiv01').innerHTML =
+              `${myIn01} is complex!`;
+          } else {
+            document.getElementById('myDiv01').innerHTML =
+              `${myIn01} isn't complex!`;
+        }
+      "
+    />
+    <div id="myDiv01">...</div>
+  </body>
+</html>
