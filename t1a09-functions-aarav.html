@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GameDev: Aarav (2026)</title>
+    <script>
+      function myExampleFunction() {
+        let myIn01 = parseInt(document.getElementById("myText01").value);
+        let mySum = myIn01 + myIn01;
+        let myReply = `${myIn01} + ${myIn01} = ${mySum}`;
+        return myReply;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>GameDev: Aarav (2026) - `t1a09-functions-aarav`</h1>
+    <h4>Example working code:</h4>
+    <input id="myText01" type="text" value="4" />
+    <br />
+    <br />
+    <input
+      type="button"
+      value="Function Example"
+      onclick="
+        {
+          document.getElementById('myDiv01').innerHTML = myExampleFunction();
+        }
+      "
+    />
+    <br />
+    <br />
+    <div id="myDiv01">...</div>
+  </body>
+</html>
