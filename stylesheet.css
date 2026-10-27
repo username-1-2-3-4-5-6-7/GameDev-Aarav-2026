@@ -203,3 +203,5 @@ body:not(.home) .counter-display input:not([type=button]) { display: block; widt
   .lab-animation #myDiv02 { justify-self: start; }
 }
 .media-examples img { width: min(256px, 100%); }
+.brand-mark { display: inline-block; width: 24px; height: 24px; vertical-align: -5px; margin-right: 5px; }
+.footer-brand .brand-mark { width: 20px; height: 20px; vertical-align: -4px; }
