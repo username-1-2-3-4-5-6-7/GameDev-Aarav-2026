@@ -205,3 +205,27 @@ body:not(.home) .counter-display input:not([type=button]) { display: block; widt
 .media-examples img { width: min(256px, 100%); }
 .brand-mark { display: inline-block; width: 24px; height: 24px; vertical-align: -5px; margin-right: 5px; }
 .footer-brand .brand-mark { width: 20px; height: 20px; vertical-align: -4px; }
+
+/* Shared spark artwork at decorative sizes. */
+.art-star { width: 120px; height: 120px; }
+.art-small-star { width: 25px; height: 25px; }
+.intro-mark { width: 32px; height: 32px; }
+.visual-css-mark { width: 28px; height: 28px; }
+.closing-mark { width: 180px; height: 180px; opacity: .12; filter: brightness(0) invert(1); }
+.lab-code-mark { width: 20px; height: 20px; }
+@media (max-width: 800px) { .art-star { width: 90px; height: 90px; } }
+
+/* Common navigation, table and footer treatments. */
+.site-header, .exercise-header { position: sticky; top: 0; z-index: 10; background: var(--canvas); }
+.table-title { margin: 0; color: var(--ink); font: 500 36px/1.15 var(--serif); letter-spacing: -.5px; }
+.table-description { margin: 12px 0 32px; color: var(--body); }
+body:not(.home) .exercise-content table { margin: 0; }
+body:not(.home) .exercise-content caption { padding: 0 0 12px; color: var(--muted); font: 500 12px/1.4 var(--sans); letter-spacing: 1px; text-align: left; text-transform: uppercase; }
+.empty-exercise { max-width: 850px; }
+.empty-exercise .button { margin-top: 8px; color: #fff; }
+@media (max-width: 767px) { .hero h1 { font-size: 32px; } .table-title { font-size: 32px; } }
+body:not(.home) .site-footer .footer-brand { color: var(--canvas); }
+body:not(.home) .exercise-content caption { white-space: nowrap; }
+body:not(.home) { min-height: 100vh; display: flex; flex-direction: column; }
+body:not(.home) .exercise-main { flex: 1 0 auto; }
+#assignments { scroll-margin-top: 80px; }

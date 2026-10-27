@@ -12,7 +12,11 @@
     <header class="exercise-header"><a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html#assignments">← All assignments</a></header>
     <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 01 / GAMEDEV 2026</p><h1>Tables</h1><p>Explore structure, grids, and moving images.</p></div>
     <section class="exercise-content" aria-label="Tables exercise">
+    <p class="lab-kicker">01 / TABLE STUDIES</p>
+    <h2 class="table-title">Structure in motion.</h2>
+    <p class="table-description">Four table layouts, each filled with the same moving image.</p>
     <table>
+      <caption>Two rows · one column</caption>
       <tr>
         <th><div class="p5-cell"></div></th>
       </tr>
@@ -22,21 +26,7 @@
     </table>
     <br />
     <table>
-      <tr>
-        <th><div class="p5-cell"></div></th>
-        <th><div class="p5-cell"></div></th>
-      </tr>
-      <tr>
-        <th><div class="p5-cell"></div></th>
-        <th><div class="p5-cell"></div></th>
-      </tr>
-    </table>
-    <br />
-    <table>
-      <tr>
-        <th><div class="p5-cell"></div></th>
-        <th><div class="p5-cell"></div></th>
-      </tr>
+      <caption>Two rows · two columns</caption>
       <tr>
         <th><div class="p5-cell"></div></th>
         <th><div class="p5-cell"></div></th>
@@ -48,6 +38,23 @@
     </table>
     <br />
     <table>
+      <caption>Three rows · two columns</caption>
+      <tr>
+        <th><div class="p5-cell"></div></th>
+        <th><div class="p5-cell"></div></th>
+      </tr>
+      <tr>
+        <th><div class="p5-cell"></div></th>
+        <th><div class="p5-cell"></div></th>
+      </tr>
+      <tr>
+        <th><div class="p5-cell"></div></th>
+        <th><div class="p5-cell"></div></th>
+      </tr>
+    </table>
+    <br />
+    <table>
+      <caption>Three rows · four columns</caption>
       <tr>
         <th><div class="p5-cell"></div></th>
         <th><div class="p5-cell"></div></th>
@@ -82,6 +89,8 @@
             video = p.createVideo(["assets/beach.mp4"]);
 
             video.size(160, 90);
+            video.elt.muted = true;
+            video.elt.playsInline = true;
             video.loop();
             video.parent(cell);
 
@@ -100,6 +109,7 @@
       });
     </script>
     </section></main>
+    <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
   </body>
 </html>
 

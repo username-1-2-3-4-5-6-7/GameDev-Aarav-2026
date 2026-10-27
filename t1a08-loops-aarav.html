@@ -10,13 +10,13 @@
   <body>
     <header class="exercise-header"><a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html#assignments">← All assignments</a></header>
     <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 08 / GAMEDEV 2026</p><h1>Loops</h1><p>Explore repetition and how code keeps going.</p></div>
-<div class="lab-grid"><section class="lab-panel" aria-label="Loops exercise"><p class="lab-kicker">01 / LIVE COUNTER</p><h2>Again and again.</h2><p>This counter is updated by a loop running in a web worker.</p><div class="counter-display"><label class="sample-label" for="myOutput">CURRENT COUNT</label><input id="myOutput" aria-label="Loop count" value="0" /></div><p class="lab-caption">The count continues while this page is open.</p><script>
+<div class="lab-grid"><section class="lab-panel" aria-label="Loops exercise"><p class="lab-kicker">01 / LIVE COUNTER</p><h2>Again and again.</h2><p>This counter is updated by a loop running in a web worker.</p><div class="counter-display"><label class="sample-label" for="myOutput">CURRENT COUNT</label><input id="myOutput" aria-label="Loop count" value="0" readonly /></div><p class="lab-caption">The count continues while this page is open.</p><script>
       const worker = new Worker("js/loopWorker.js");
 
       worker.onmessage = (event) => {
         document.getElementById("myOutput").value = event.data;
       };
-    </script></section><aside class="lab-code" aria-label="LOOP WORKER"><div class="lab-code-head"><span>LOOP WORKER</span><span aria-hidden="true">✳</span></div><pre><code>let i = 0;
+    </script></section><aside class="lab-code" aria-label="LOOP WORKER"><div class="lab-code-head"><span>LOOP WORKER</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>let i = 0;
 
 while (true) {
   await sleep(1);
@@ -24,6 +24,7 @@ while (true) {
   self.postMessage(i);
 }</code></pre></aside></div>
     </main>
+    <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
   </body>
 </html>
 
