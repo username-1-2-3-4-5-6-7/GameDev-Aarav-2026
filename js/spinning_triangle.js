@@ -1,7 +1,7 @@
 let angle = 0;
 
 function setup() {
-  createCanvas(256, 256);
+  createCanvas(256, 256).parent("myDiv02");
   noStroke();
 }
 

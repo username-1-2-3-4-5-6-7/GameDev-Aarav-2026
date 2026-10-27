@@ -1,28 +1,18 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en-US">
   <head>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="stylesheet.css" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>GameDev: Aarav (2026)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Decisions — GameDev by Aarav</title>
   </head>
   <body>
-    <h1>GameDev: Aarav (2026) - `t1a07-decision-aarav`</h1>
-    <h4>Example input/output code:</h4>
-    <pre>
-      let myHour = 20;
-
-      // 6 p.m.
-      if (myHour < 18) {
-        let myGreeting = "Good evening!";
-      }
-    </pre>
-    <h4>Example working code:</h4>
-    <input id="myNum01" type="number" value="4" />
-    <br />
-    <input
+    <header class="exercise-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✳</span> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html">← All assignments</a></header>
+    <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 07 / GAMEDEV 2026</p><h1>Decisions</h1><p>Try making choices with conditional logic.</p></div>
+<div class="lab-grid"><section class="lab-panel" aria-label="Decisions exercise"><p class="lab-kicker">01 / TRY IT</p><h2>What will the code decide?</h2><p>Enter a number, then choose a condition to see the result.</p><label class="lab-label" for="myNum01">Your number</label><input id="myNum01" type="number" value="4" /><div class="lab-actions"><input
       type="button"
-      value="Simple `if` statement for decision making"
+      value="Simple if"
       onclick="
         {
           let myIn01 = parseFloat(document.getElementById('myNum01').value);
@@ -34,9 +24,9 @@
         }
       "
     />
-    <input
+<input
       type="button"
-      value="`if...else`"
+      value="If / else"
       onclick="
         {
           let myIn01 = parseFloat(document.getElementById('myNum01').value);
@@ -47,12 +37,13 @@
           } else {
             document.getElementById('myDiv01').innerHTML =
               `${myIn01} is less than 3!`;
+          }
         }
       "
     />
-    <input
+<input
       type="button"
-      value="Complex `if`"
+      value="Complex if"
       onclick="
         {
           let myIn01 = parseFloat(document.getElementById('myNum01').value);
@@ -63,9 +54,17 @@
           } else {
             document.getElementById('myDiv01').innerHTML =
               `${myIn01} isn't complex!`;
+          }
         }
       "
-    />
-    <div id="myDiv01">...</div>
+    /></div><div class="lab-output"><span class="sample-label">RESULT</span><div id="myDiv01" aria-live="polite">Choose a condition to see the result.</div></div></section><aside class="lab-code" aria-label="EXAMPLE / IF STATEMENT"><div class="lab-code-head"><span>EXAMPLE / IF STATEMENT</span><span aria-hidden="true">✳</span></div><pre><code>let myHour = 20;
+
+// 6 p.m.
+if (myHour &lt; 18) {
+  let myGreeting = "Good evening!";
+}</code></pre></aside></div><p class="lab-footnote">The simple <code>if</code> example only updates the result when the number is 3 or greater.</p>
+    </main>
   </body>
 </html>
+
+

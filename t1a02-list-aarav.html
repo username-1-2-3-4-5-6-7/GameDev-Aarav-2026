@@ -1,77 +1,96 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en-US">
   <head>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="stylesheet.css" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>GameDev: Aarav (2026)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lists — GameDev by Aarav</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
   </head>
   <body>
-    <h1>GameDev: Aarav (2026) - `t1a02-list-aarav`</h1>
-    <table>
-      <tr>
-        <th><a href="https://happywhale.com">Happywhale</a></th>
-      </tr>
-      <tr>
-        <th>
-          <div>
-            My Whale:
-            <br />
-            <img src="assets/myWhale.jpg" width="67" height="67" />
-          </div>
-        </th>
-        <th></th>
-      </tr>
-    </table>
-    <ul>
-      <li>Blue</li>
-      <li>Fin</li>
-      <li>Humpback</li>
-      <li>Bowhead</li>
-      <li>Gray</li>
-    </ul>
+    <header class="exercise-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✳</span> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html">← All assignments</a></header>
+    <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 02 / GAMEDEV 2026</p><h1>Lists</h1><p>A list-making exercise with a whale of an experiment.</p></div>
+    <section class="whale-layout" aria-label="Lists exercise">
+      <div class="whale-directory">
+        <p class="eyebrow">A SMALL FIELD GUIDE · 05 SPECIES</p>
+        <h2>Meet the whales.</h2>
+        <p class="whale-introduction">Five baleen whales, listed by their common and scientific names.</p>
+        <div class="whale-list-labels" aria-hidden="true"><span>COMMON NAME</span><span>SCIENTIFIC NAME</span></div>
+        <ul class="whale-list">
+          <li><span>Blue whale</span><i>Balaenoptera musculus</i></li>
+          <li><span>Fin whale</span><i>Balaenoptera physalus</i></li>
+          <li><span>Humpback whale</span><i>Megaptera novaeangliae</i></li>
+          <li><span>Bowhead whale</span><i>Balaena mysticetus</i></li>
+          <li><span>Gray whale</span><i>Eschrichtius robustus</i></li>
+        </ul>
+        <p class="whale-source">Species names from the <a href="https://iwc.int/about-whales/cetacea">International Whaling Commission ↗</a></p>
+      </div>
+      <aside class="whale-feature">
+        <img alt="A whale swimming underwater" src="assets/myWhale.jpg" />
+        <div class="whale-feature-copy"><p class="eyebrow">A CLOSER LOOK</p><h2>My whale</h2><p>Explore and learn more about whales with Happywhale.</p><a href="https://happywhale.com">Visit Happywhale <span aria-hidden="true">↗</span></a></div>
+      </aside>
+    </section>
+    <section class="whale-animation" aria-labelledby="animation-title">
+      <div class="whale-animation-heading"><div><p class="eyebrow">A MOMENT AT SEA</p><h2 id="animation-title">A whale in motion.</h2></div><p>A little animation inspired by life beneath the surface.</p></div>
+      <div id="whale-animation-canvas" role="img" aria-label="An illustration of a whale swimming beneath moving ocean waves"></div>
+      <p class="whale-animation-credit">Rice’s whale illustration: <a href="https://www.fisheries.noaa.gov/species/rices-whale">NOAA Fisheries ↗</a></p>
+    </section>
     <script>
       let whale;
-      let whaleX = 0;
-      let whaleSpeed = 2;
+      let whaleX = 220;
 
       async function setup() {
-        createCanvas(512, 256);
-
-        whale = await loadImage("assets/otherWhale.png");
+        const canvas = createCanvas(800, 360);
+        canvas.parent('whale-animation-canvas');
+        canvas.elt.setAttribute('aria-hidden', 'true');
+        whale = await loadImage('assets/rices-whale-noaa.png');
       }
 
-      // Thanks again, OpenAI.
       function draw() {
-        // Blue
-        background(100, 180, 220);
+        const time = frameCount * 0.015;
+        const ctx = drawingContext;
+        const water = ctx.createLinearGradient(0, 0, 0, height);
+        water.addColorStop(0, '#92c8c4');
+        water.addColorStop(0.38, '#4e8e91');
+        water.addColorStop(1, '#1e4c54');
+        ctx.fillStyle = water;
+        ctx.fillRect(0, 0, width, height);
 
-        // Waves
-
-        stroke(255);
-        strokeWeight(3);
-        noFill();
-
-        beginShape();
-
-        for (let x = 0; x <= width; x += 10) {
-          let y = 150 + sin(x * 0.03 + frameCount * 0.05) * 5;
-          vertex(x, y);
+        // Overlapping, gently moving surface swells.
+        noStroke();
+        for (let layer = 0; layer < 4; layer++) {
+          fill(235, 247, 235, 24 - layer * 4);
+          beginShape();
+          vertex(0, 0);
+          for (let x = 0; x <= width; x += 8) {
+            const y = 48 + layer * 12 + sin(x * 0.009 + time * (1 + layer * 0.12) + layer) * 8 + sin(x * 0.022 - time * 0.7) * 3;
+            vertex(x, y);
+          }
+          vertex(width, 0);
+          endShape(CLOSE);
         }
-
-        endShape();
-
-        whaleX = whaleX + whaleSpeed;
-
-        if (whaleX > width - 100 || whaleX < 0) {
-          whaleSpeed = whaleSpeed * -1;
+        for (let layer = 0; layer < 7; layer++) {
+          noFill();
+          stroke(224, 242, 230, 35 - layer * 3);
+          strokeWeight(layer < 2 ? 2 : 1);
+          beginShape();
+          for (let x = 0; x <= width; x += 8) {
+            vertex(x, 70 + layer * 26 + sin(x * 0.012 + time * (1.1 + layer * 0.1) + layer) * (4 + layer) + sin(x * 0.025 - time) * 2);
+          }
+          endShape();
         }
-
-        let whaleY = 70 + sin(frameCount * 0.05) * 10;
-
-        image(whale, whaleX, whaleY, 100, 100);
+        if (whale) {
+          const bob = sin(time * 1.2) * 8;
+          image(whale, whaleX, 145 + bob, 340, 92, 0, 190, 800, 210);
+          whaleX -= 0.55;
+          if (whaleX < -340) whaleX = width;
+        }
       }
     </script>
+    </main>
   </body>
 </html>
+
+
+

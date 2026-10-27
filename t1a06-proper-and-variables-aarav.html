@@ -1,10 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en-US">
   <head>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="stylesheet.css" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>GameDev: Aarav (2026)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Variables — GameDev by Aarav</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/2.3.3/p5.min.js"></script>
     <script>
       let angleDelta = 6.3;
@@ -32,31 +33,14 @@
     </script>
   </head>
   <body>
-    <h1>GameDev: Aarav (2026)</h1>
-    <p>This is <b>bold</b> text!</p>
-    <button onClick="sayHello()">Click Me</button>
-    <br />
-    <br />
-    <div id="myDiv01">Hello, World!</div>
-    <br />
-    <br />
-    <div id="myDiv02">
-      This is an <bold>animation</bold>:
-      <script src="js/spinning_triangle.js"></script>
-      <input
-        type="button"
-        value="-"
-        onClick="{
-          angleDelta -= 0.1;
-        }"
-      />
-      <input
-        type="button"
-        value="+"
-        onClick="{
-          angleDelta += 0.1;
-        }"
-      />
-    </div>
+    <header class="exercise-header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">✳</span> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html">← All assignments</a></header>
+    <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 06 / GAMEDEV 2026</p><h1>Variables</h1><p>Give ideas a name and bring them to life.</p></div>
+<div class="lab-grid"><section class="lab-panel" aria-label="Variables exercise"><p class="lab-kicker">01 / VARIABLES</p><h2>A few values, one output.</h2><p>Numbers, text, and a boolean can all be stored in variables. See them come together below.</p><p class="type-example">This is <b>bold</b> text!</p><button type="button" onclick="sayHello()">Show values <span aria-hidden="true">→</span></button><div class="lab-output"><span class="sample-label">OUTPUT</span><div id="myDiv01" aria-live="polite">Hello, World!</div></div></section><aside class="lab-code" aria-label="VARIABLES"><div class="lab-code-head"><span>VARIABLES</span><span aria-hidden="true">✳</span></div><pre><code>const myNum = 6;
+const myString = "Hello, World";
+const myFloat = 67.0;
+const myBool = false;</code></pre></aside></div><section class="lab-panel lab-animation" aria-labelledby="triangle-title"><div><p class="lab-kicker">02 / ANIMATION</p><h2 id="triangle-title">A little motion.</h2><p>Variables can also help bring shapes to life.</p></div><div id="myDiv02" aria-label="Animated spinning triangle"><script src="js/spinning_triangle.js"></script></div></section>
+    </main>
   </body>
 </html>
+
+

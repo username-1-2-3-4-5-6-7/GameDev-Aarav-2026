@@ -1,31 +1,66 @@
-<!doctype html>
-<html lang="en-US">
+﻿<!doctype html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>GameDev: Aarav (2026)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Aarav's game development assignments and experiments for 2026." />
+    <title>GameDev by Aarav — 2026</title>
+    <link rel="stylesheet" href="stylesheet.css" />
   </head>
-  <body>
-    <h1>GameDev: Aarav (2026)</h1>
-    <a href="https://github.com/username-1-2-3-4-5-6-7">GitHub</a>
-    <a href="https://github.com/username-1-2-3-4-5-6-7/GameDev-Aarav-2026"
-      >Repository</a
-    >
-    <a
-      href="https://github.com/username-1-2-3-4-5-6-7/GameDev-Aarav-2026/blob/main/index.html"
-      >This Page</a
-    >
-    <br />
-    <h2>Assignments</h2>
-    <a href="t1a01-table-aarav.html">T1A01: Tables</a>
-    <a href="t1a02-list-aarav.html">T1A02: Lists</a>
-    <a href="t1a03-forms-aarav.html">T1A03: Forms</a>
-    <a href="t1a04-css-aarav.html">T1A04: CSS</a>
-    <a href="t1a05-input-output-aarav.html">T1A05: Input/Output</a>
-    <a href="t1a06-proper-and-variables-aarav.html"
-      >T1A06: Proper and Variables</a
-    >
-    <a href="t1a08-loops-aarav.html">T1A08: Loops</a>
+  <body class="home">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="GameDev by Aarav, home"><span class="brand-mark" aria-hidden="true">✳</span> GameDev <span class="brand-by">/ Aarav</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#assignments">Assignments</a>
+        <a href="https://github.com/username-1-2-3-4-5-6-7/GameDev-Aarav-2026"><svg class="github-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.23.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.21 1.87.86 2.33.66.07-.52.28-.86.51-1.06-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 4.74c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.32c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg> Repository <span aria-hidden="true">↗</span></a>
+      </nav>
+      <details class="mobile-menu">
+        <summary aria-label="Open navigation"><span></span><span></span></summary>
+        <nav aria-label="Mobile navigation">
+          <a href="#assignments" onclick="this.closest('details').removeAttribute('open')">Assignments</a>
+          <a href="https://github.com/username-1-2-3-4-5-6-7/GameDev-Aarav-2026"><svg class="github-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.23.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.21 1.87.86 2.33.66.07-.52.28-.86.51-1.06-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 4.74c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.32c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg> Repository ↗</a>
+        </nav>
+      </details>
+    </header>
+
+    <main>
+      <section class="hero wrap" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> A LEARNING JOURNAL · 2026</p>
+          <h1 id="hero-title">Learning to make<br /><em>things move.</em></h1>
+          <p class="hero-description">A collection of experiments, exercises, and small discoveries from Aarav’s game development journey.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#assignments">Explore assignments <span aria-hidden="true">↘</span></a>
+            <a class="text-link" href="https://github.com/username-1-2-3-4-5-6-7/GameDev-Aarav-2026"><svg class="github-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.23.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.21 1.87.86 2.33.66.07-.52.28-.86.51-1.06-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 4.74c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.32c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg> View the repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="A playful illustration of a game development workspace">
+          <div class="art-top"><span>THE CREATIVE PROCESS</span><span>01 / 26</span></div>
+          <div class="art-center" aria-hidden="true"><span class="art-orbit orbit-one"></span><span class="art-orbit orbit-two"></span><span class="art-star">✳</span><span class="art-small-star">✳</span><span class="art-cross">+</span></div>
+          <div class="art-bottom"><span>IDEAS IN MOTION</span><span>✦</span></div>
+        </div>
+      </section>
+
+      <div class="intro-band">
+        <div class="wrap intro-inner"><p class="eyebrow">THE WORK SO FAR</p><p>From first lines of HTML to interactive experiments, every project is a step toward something bigger.</p><span aria-hidden="true">✳</span></div>
+      </div>
+
+      <section class="assignments wrap" id="assignments" aria-labelledby="assignment-title">
+        <div class="section-heading"><div><p class="eyebrow">THE ASSIGNMENT INDEX</p><h2 id="assignment-title">A little bit of everything.</h2></div><p>Explore the exercises and ideas built along the way.</p></div>
+        <div class="assignment-grid">
+          <a class="assignment-card" href="t1a01-table-aarav.html"><div class="card-top"><span>01 / HTML</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-table" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div><h3>Tables</h3><p>Playing with structure, grids, and moving images.</p></div><span class="card-bottom">T1A01 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card" href="t1a02-list-aarav.html"><div class="card-top"><span>02 / HTML</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-list" aria-hidden="true"><span>01 <i></i></span><span>02 <i></i></span><span>03 <i></i></span></div><div><h3>Lists</h3><p>A little list-making, with a whale of an experiment.</p></div><span class="card-bottom">T1A02 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card" href="t1a04-css-aarav.html"><div class="card-top"><span>04 / DESIGN</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-css" aria-hidden="true"><span>Aa</span><i>✳</i></div><div><h3>CSS</h3><p>Exploring color, typography, and visual style.</p></div><span class="card-bottom">T1A04 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card dark-card" href="t1a06-proper-and-variables-aarav.html"><div class="card-top"><span>06 / JAVASCRIPT</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-code" aria-hidden="true"><span><b>const</b> idea = <i>"hello"</i>;</span><span><b>let</b> motion = true;</span><span class="code-muted">// make something move</span></div><div><h3>Variables</h3><p>Giving ideas a name and bringing them to life.</p></div><span class="card-bottom">T1A06 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card" href="t1a07-decision-aarav.html"><div class="card-top"><span>07 / JAVASCRIPT</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-decision" aria-hidden="true"><span>if</span><i>↗</i><span>else</span></div><div><h3>Decisions</h3><p>Making choices with conditional logic.</p></div><span class="card-bottom">T1A07 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card" href="t1a08-loops-aarav.html"><div class="card-top"><span>08 / JAVASCRIPT</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-loop" aria-hidden="true">↻</div><div><h3>Loops</h3><p>Looking at repetition and how code keeps going.</p></div><span class="card-bottom">T1A08 <span>VIEW EXERCISE →</span></span></a>
+          <a class="assignment-card" href="t1a09-functions-aarav.html"><div class="card-top"><span>09 / JAVASCRIPT</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="card-visual visual-function" aria-hidden="true">f <span>( x )</span></div><div><h3>Functions</h3><p>Making reusable pieces of code do the work.</p></div><span class="card-bottom">T1A09 <span>VIEW EXERCISE →</span></span></a>
+        </div>
+      </section>
+      <section class="closing wrap"><div><p class="eyebrow">ALWAYS A WORK IN PROGRESS</p><h2>Curiosity is a good<br /><em>place to start.</em></h2><p>More experiments, more learning, and more to come.</p></div><a class="button button-light" href="https://github.com/username-1-2-3-4-5-6-7"><svg class="github-icon" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38l-.01-1.49c-2.23.48-2.69-1.07-2.69-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.21 1.87.86 2.33.66.07-.52.28-.86.51-1.06-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.65 7.65 0 0 1 8 4.74c.68 0 1.36.09 2 .27 1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48l-.01 2.32c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg> Visit GitHub <span aria-hidden="true">↗</span></a><span class="closing-mark" aria-hidden="true">✳</span></section>
+    </main>
+    <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><span aria-hidden="true">✳</span> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
   </body>
 </html>
+
