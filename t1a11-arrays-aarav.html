@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Arrays — GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"
+        ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev
+        <span class="brand-by">/ Aarav</span></a
+      ><a class="exercise-home" href="index.html#assignments"
+        >← All assignments</a
+      >
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 11 / GAMEDEV 2026</p>
+        <h1>Arrays</h1>
+        <p>Explore collections, indexes, and loops in JavaScript.</p>
+      </div>
+      <div class="lesson-stack">
+        <div class="lab-panel lesson-section">
+          <h2>Getting to know arrays</h2>
+
+          <div class="lesson-callout">
+            <b>What is an array?</b>
+
+            <p>
+              An Array is an object type designed for storing data collections.
+            </p>
+          </div>
+
+          <p>
+            Reference:
+            <a
+              href="https://www.w3schools.com/js/js_arrays.asp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              W3Schools JavaScript Arrays
+            </a>
+          </p>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Explore array entries</h2>
+
+          <p>
+            Choose a number from zero to three to reveal entries from the names array.
+          </p>
+
+          <label for="myText01"><b>Number of entries:</b></label>
+          <br />
+
+          <input
+            type="number"
+            id="myText01"
+            value="3"
+            min="0"
+            max="3"
+            step="1"
+          />
+
+          <br />
+
+          <button class="demo-button" type="button" onclick="myShowArray()">
+            Show entries
+          </button>
+
+          <div class="lesson-result" id="myDiv01" aria-live="polite">
+            Choose how many entries to show.
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Add a collection</h2>
+
+          <p>
+            Loop through a collection of numbers and add them together.
+          </p>
+
+          <button class="demo-button" type="button" onclick="myShowNumbers()">
+            Show numbers and total
+          </button>
+
+          <div class="lesson-result" id="myDiv02" aria-live="polite">
+            The numbers and their total will appear here.
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Find the largest value</h2>
+
+          <p>
+            Compare each value in the collection to find the largest.
+          </p>
+
+          <button class="demo-button" type="button" onclick="myFindLargest()">
+            Find the largest
+          </button>
+
+          <div class="lesson-result" id="myDiv03" aria-live="polite">
+            The largest number will appear here.
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>What these examples show</h2>
+
+          <ul>
+            <li>How to create a JavaScript array.</li>
+            <li>How array indexes start at zero.</li>
+            <li>How to use a loop to access array entries.</li>
+            <li>How to calculate a total from an array of numbers.</li>
+            <li>How to find the largest value in an array.</li>
+          </ul>
+        </div>
+
+        <p class="lesson-credit">Arrays Project · Created by Aarav</p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"
+          ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev /
+          Aarav</a
+        >
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+    <script>
+      function myShowArray() {
+        let myTemp = Number(document.getElementById("myText01").value);
+
+        let myDiv = document.getElementById("myDiv01");
+
+        if (
+          document.getElementById("myText01").value.trim() === "" ||
+          !Number.isInteger(myTemp) ||
+          myTemp < 0 ||
+          myTemp > 3
+        ) {
+          myDiv.innerHTML = "Please enter a whole number from 0 to 3.";
+          return;
+        }
+
+        let myArray = new Array();
+
+        myArray[0] = "Aarav";
+        myArray[1] = "Mary";
+        myArray[2] = "Lizzy";
+
+        let mySum = "";
+
+        for (let myLoop = 0; myLoop < myTemp; myLoop++) {
+          mySum +=
+            "Loop #: " + myLoop + " | Array entry: " + myArray[myLoop] + "<br>";
+        }
+
+        if (myTemp === 0) {
+          mySum = "No array entries selected.";
+        }
+
+        myDiv.innerHTML = mySum;
+      }
+
+      function myShowNumbers() {
+        let myNumbers = [10, 20, 30, 40, 50];
+        let myTotal = 0;
+        let myOutput = "<b>Number Array:</b><br>";
+
+        for (let i = 0; i < myNumbers.length; i++) {
+          myOutput += "Index " + i + ": " + myNumbers[i] + "<br>";
+
+          myTotal += myNumbers[i];
+        }
+
+        myOutput += "<br><b>Total: " + myTotal + "</b>";
+
+        document.getElementById("myDiv02").innerHTML = myOutput;
+      }
+
+      function myFindLargest() {
+        let myNumbers = [12, 45, 7, 89, 23];
+        let myLargest = myNumbers[0];
+
+        for (let i = 1; i < myNumbers.length; i++) {
+          if (myNumbers[i] > myLargest) {
+            myLargest = myNumbers[i];
+          }
+        }
+
+        document.getElementById("myDiv03").innerHTML =
+          "Numbers: " +
+          myNumbers.join(", ") +
+          "<br><br>Largest number: " +
+          myLargest;
+      }
+    </script>
+  </body>
+</html>

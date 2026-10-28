@@ -1,0 +1,393 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Mandelbrot Explorer</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #000;
+      }
+      body {
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+        color: #faf9f5;
+      }
+      canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      #myPreviewCanvas {
+        pointer-events: none;
+      }
+      .myControls {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: calc(100vw - 32px);
+      }
+      button,
+      a {
+        font: inherit;
+      }
+      .myControl {
+        border: 1px solid #625b53;
+        border-radius: 8px;
+        background: #181715;
+        color: #faf9f5;
+        padding: 10px 14px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .myControl:focus-visible {
+        outline: 3px solid #cc785c;
+        outline-offset: 2px;
+      }
+      #myHint {
+        background: #cc785c;
+        color: #fff;
+        border-color: #cc785c;
+      }
+      #myStatus {
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background: #181715e8;
+        color: #faf9f5;
+        pointer-events: none;
+      }
+      dialog {
+        width: min(440px, calc(100% - 32px));
+        border: 0;
+        border-radius: 12px;
+        padding: 28px;
+        background: #faf9f5;
+        color: #141413;
+      }
+      dialog::backdrop {
+        background: #000b;
+      }
+      dialog h1 {
+        font:
+          400 32px/1.1 Georgia,
+          serif;
+        letter-spacing: -0.5px;
+        margin: 0 0 16px;
+      }
+      dialog p {
+        color: #3d3d3a;
+      }
+      dialog .myControl {
+        background: #cc785c;
+        border-color: #cc785c;
+        color: #fff;
+      }
+      @media (max-width: 480px) {
+        .myControls {
+          top: 12px;
+          left: 12px;
+        }
+        #myStatus {
+          left: 12px;
+          bottom: 12px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myFractalCanvas" aria-label="Zoomable Mandelbrot fractal"
+      >Your browser does not support canvas.</canvas
+    >
+    <canvas id="myPreviewCanvas" aria-hidden="true"></canvas>
+    <div class="myControls">
+      <button
+        id="myHint"
+        class="myControl"
+        type="button"
+        aria-haspopup="dialog"
+      >
+        How to explore
+      </button>
+      <button id="myReset" class="myControl" type="button">Reset view</button>
+      <a class="myControl" href="t1a15-mandelbrot-prompt-fred.html"
+        >← Assignment</a
+      >
+    </div>
+    <div id="myStatus" role="status" aria-live="polite">
+      Scroll to change zoom · Click to explore
+    </div>
+    <dialog id="myInfo" aria-labelledby="myInfoTitle">
+      <h1 id="myInfoTitle">A world within a set.</h1>
+      <p>
+        For each point <i>C</i> in the complex plane, the explorer begins with
+        <i>Z</i> = 0 and repeatedly calculates
+        <strong>Z<sub>n+1</sub> = Z<sub>n</sub><sup>2</sup> + C</strong>. Points
+        that escape are colored by how quickly they do so; points that do not
+        escape within the iteration limit remain black.
+      </p>
+      <p>
+        Move the pointer to preview the next view. Scroll to change the dashed
+        rectangle’s size, then click to zoom into that exact region. Use Reset
+        view to start again.
+      </p>
+      <button id="myCloseInfo" class="myControl" type="button">Close</button>
+    </dialog>
+    <script>
+      const myCanvas = document.getElementById("myFractalCanvas");
+      const myContext = myCanvas.getContext("2d", { alpha: false });
+      const myPreviewCanvas = document.getElementById("myPreviewCanvas");
+      const myPreviewContext = myPreviewCanvas.getContext("2d");
+      const myStatus = document.getElementById("myStatus");
+      const myInfo = document.getElementById("myInfo");
+      const myBuffer = document.createElement("canvas");
+      const myBufferContext = myBuffer.getContext("2d");
+      let myCenterReal = -0.5;
+      let myCenterImaginary = 0;
+      let myViewWidth = 3.5;
+      let myPreviewScale = 0.5;
+      let myPointerX = 0;
+      let myPointerY = 0;
+      let myPointerVisible = false;
+      let myRenderVersion = 0;
+      let myEscapeValues = null;
+      let myImageData = null;
+      let myIsRendering = false;
+      let myLastColorTime = 0;
+
+      function myDrawPreview() {
+        myPreviewContext.clearRect(
+          0,
+          0,
+          myPreviewCanvas.width,
+          myPreviewCanvas.height,
+        );
+        if (!myPointerVisible) return;
+        const myBoxWidth = myPreviewCanvas.width * myPreviewScale;
+        const myBoxHeight = myPreviewCanvas.height * myPreviewScale;
+        myPreviewContext.save();
+        myPreviewContext.strokeStyle = "#fff";
+        myPreviewContext.lineWidth = 1.5;
+        myPreviewContext.setLineDash([8, 6]);
+        myPreviewContext.strokeRect(
+          myPointerX - myBoxWidth / 2,
+          myPointerY - myBoxHeight / 2,
+          myBoxWidth,
+          myBoxHeight,
+        );
+        myPreviewContext.restore();
+      }
+
+      function myColorPixel(myValue, myTime, myOffset) {
+        if (myValue < 0) {
+          myImageData.data[myOffset] = 0;
+          myImageData.data[myOffset + 1] = 0;
+          myImageData.data[myOffset + 2] = 0;
+          myImageData.data[myOffset + 3] = 255;
+          return;
+        }
+        const myHue = (0.58 + myValue * 0.025 + myTime * 0.000035) % 1;
+        const mySector = myHue * 6;
+        const myIndex = Math.floor(mySector);
+        const myFraction = mySector - myIndex;
+        const myLow = 0.14;
+        const myFalling = 1 - 0.86 * myFraction;
+        const myRising = myLow + 0.86 * myFraction;
+        const myRed =
+          myIndex === 0 || myIndex === 5
+            ? 1
+            : myIndex === 1
+              ? myFalling
+              : myIndex === 4
+                ? myRising
+                : myLow;
+        const myGreen =
+          myIndex === 1 || myIndex === 2
+            ? 1
+            : myIndex === 0
+              ? myRising
+              : myIndex === 3
+                ? myFalling
+                : myLow;
+        const myBlue =
+          myIndex === 3 || myIndex === 4
+            ? 1
+            : myIndex === 2
+              ? myRising
+              : myIndex === 5
+                ? myFalling
+                : myLow;
+        myImageData.data[myOffset] = myRed * 255;
+        myImageData.data[myOffset + 1] = myGreen * 255;
+        myImageData.data[myOffset + 2] = myBlue * 255;
+        myImageData.data[myOffset + 3] = 255;
+      }
+
+      function myPaint(myTime) {
+        if (!myEscapeValues || !myImageData) return;
+        for (let myPixel = 0; myPixel < myEscapeValues.length; myPixel++) {
+          myColorPixel(myEscapeValues[myPixel], myTime, myPixel * 4);
+        }
+        myBufferContext.putImageData(myImageData, 0, 0);
+        myContext.imageSmoothingEnabled = true;
+        myContext.drawImage(myBuffer, 0, 0, myCanvas.width, myCanvas.height);
+      }
+
+      async function myRenderFractal() {
+        const myVersion = ++myRenderVersion;
+        myIsRendering = true;
+        const myResolutionScale = Math.min(
+          1,
+          Math.sqrt(700000 / (myCanvas.width * myCanvas.height)),
+        );
+        const myWidth = Math.max(
+          1,
+          Math.round(myCanvas.width * myResolutionScale),
+        );
+        const myHeight = Math.max(
+          1,
+          Math.round(myCanvas.height * myResolutionScale),
+        );
+        myBuffer.width = myWidth;
+        myBuffer.height = myHeight;
+        myEscapeValues = new Float32Array(myWidth * myHeight);
+        myEscapeValues.fill(-2);
+        myImageData = myBufferContext.createImageData(myWidth, myHeight);
+        const myViewHeight = (myViewWidth * myCanvas.height) / myCanvas.width;
+        const myIterations = Math.min(
+          1600,
+          Math.max(180, Math.floor(180 + 45 * Math.log2(3.5 / myViewWidth))),
+        );
+        myStatus.textContent = "Rendering · scroll to adjust zoom";
+        for (let myY = 0; myY < myHeight; myY++) {
+          const myImaginary =
+            myCenterImaginary + (myY / myHeight - 0.5) * myViewHeight;
+          for (let myX = 0; myX < myWidth; myX++) {
+            const myReal = myCenterReal + (myX / myWidth - 0.5) * myViewWidth;
+            let myZReal = 0;
+            let myZImaginary = 0;
+            let myIteration = 0;
+            while (
+              myZReal * myZReal + myZImaginary * myZImaginary <= 256 &&
+              myIteration < myIterations
+            ) {
+              const myNextReal =
+                myZReal * myZReal - myZImaginary * myZImaginary + myReal;
+              myZImaginary = 2 * myZReal * myZImaginary + myImaginary;
+              myZReal = myNextReal;
+              myIteration++;
+            }
+            if (myIteration < myIterations) {
+              const myMagnitude = Math.sqrt(
+                myZReal * myZReal + myZImaginary * myZImaginary,
+              );
+              myEscapeValues[myY * myWidth + myX] =
+                myIteration + 1 - Math.log2(Math.log2(myMagnitude));
+            } else {
+              myEscapeValues[myY * myWidth + myX] = -1;
+            }
+          }
+          if (myY % 24 === 23) {
+            if (myVersion !== myRenderVersion) return;
+            myPaint(performance.now());
+            await new Promise((myResolve) => requestAnimationFrame(myResolve));
+            if (myVersion !== myRenderVersion) return;
+          }
+        }
+        if (myVersion !== myRenderVersion) return;
+        myIsRendering = false;
+        myPaint(performance.now());
+        myStatus.textContent = "Scroll to change zoom · Click to explore";
+      }
+
+      function myAnimateColors(myTime) {
+        if (!myIsRendering && myTime - myLastColorTime >= 100) {
+          myPaint(myTime);
+          myLastColorTime = myTime;
+        }
+        requestAnimationFrame(myAnimateColors);
+      }
+
+      function myResize() {
+        myCanvas.width = Math.max(1, window.innerWidth);
+        myCanvas.height = Math.max(1, window.innerHeight);
+        myPreviewCanvas.width = myCanvas.width;
+        myPreviewCanvas.height = myCanvas.height;
+        myDrawPreview();
+        myRenderFractal();
+      }
+
+      myCanvas.onmousemove = (myEvent) => {
+        myPointerX = myEvent.clientX;
+        myPointerY = myEvent.clientY;
+        myPointerVisible = true;
+        myDrawPreview();
+      };
+      myCanvas.onmouseleave = () => {
+        myPointerVisible = false;
+        myDrawPreview();
+      };
+      myCanvas.onwheel = (myEvent) => {
+        myEvent.preventDefault();
+        myPointerX = myEvent.clientX;
+        myPointerY = myEvent.clientY;
+        myPointerVisible = true;
+        myPreviewScale = Math.max(
+          0.08,
+          Math.min(
+            0.9,
+            myPreviewScale * Math.exp(Math.sign(myEvent.deltaY) * 0.12),
+          ),
+        );
+        myDrawPreview();
+        myStatus.textContent = `Next view: ${(1 / myPreviewScale).toFixed(1)}× zoom · Click to explore`;
+      };
+      myCanvas.onclick = (myEvent) => {
+        if (myViewWidth * myPreviewScale < 1e-13) {
+          myStatus.textContent =
+            "Precision limit reached · Reset to explore elsewhere";
+          return;
+        }
+        const myViewHeight = (myViewWidth * myCanvas.height) / myCanvas.width;
+        myCenterReal += (myEvent.clientX / myCanvas.width - 0.5) * myViewWidth;
+        myCenterImaginary +=
+          (myEvent.clientY / myCanvas.height - 0.5) * myViewHeight;
+        myViewWidth *= myPreviewScale;
+        myRenderFractal();
+      };
+      document.getElementById("myHint").onclick = () => {
+        if (myInfo.open) myInfo.close();
+        else myInfo.showModal();
+      };
+      document.getElementById("myCloseInfo").onclick = () => myInfo.close();
+      document.getElementById("myReset").onclick = () => {
+        myCenterReal = -0.5;
+        myCenterImaginary = 0;
+        myViewWidth = 3.5;
+        myPreviewScale = 0.5;
+        myDrawPreview();
+        myRenderFractal();
+      };
+      window.onresize = myResize;
+      myResize();
+      requestAnimationFrame(myAnimateColors);
+    </script>
+  </body>
+</html>

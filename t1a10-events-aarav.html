@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Events — GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"
+        ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev
+        <span class="brand-by">/ Aarav</span></a
+      ><a class="exercise-home" href="index.html#assignments"
+        >← All assignments</a
+      >
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 10 / GAMEDEV 2026</p>
+        <h1>Events</h1>
+        <p>See how a page responds to clicks, keys, and other events.</p>
+      </div>
+      <div class="lesson-stack">
+        <div class="lab-panel lesson-section">
+          <h2>About HTML Events</h2>
+
+          <p>
+            HTML events happen when a user interacts with a webpage. JavaScript
+            can respond to these events by changing text, detecting clicks,
+            tracking mouse movement, and much more.
+          </p>
+
+          <div class="lesson-callout">
+            <b>Reference:</b>
+            <a
+              href="https://way2tutorial.com/html/html5_events_handler_list.php"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              HTML Events Reference
+            </a>
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Example 1: onClick</h2>
+
+          <p>Enter some text and click the button to display it.</p>
+
+          <input
+            type="text"
+            id="myText01"
+            value="3"
+            aria-label="Text to display"
+          />
+
+          <button
+            onclick="{
+            document.getElementById('myDiv01').textContent =
+                document.getElementById('myText01').value;
+        }"
+          >
+            Display Text
+          </button>
+
+          <p><b>Result:</b></p>
+          <div class="lesson-result" id="myDiv01" aria-live="polite">
+            Your text will appear here.
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Example 2: Mouse Over and Mouse Out</h2>
+
+          <p>Move your mouse over the bold text, then move it away.</p>
+
+          <div class="demo-box">
+            <b
+              id="myB02"
+              onmouseover="{
+                   this.innerHTML = 'This is cool!';
+                   this.style.color = '#a9583e';
+               }"
+              onmouseout="{
+                   this.innerHTML = 'This is nice!';
+                   this.style.color = '#141413';
+               }"
+            >
+              Hover over me!
+            </b>
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>More JavaScript Events</h2>
+
+          <p class="small-note">
+            Try each activity below. The results appear in the Event Output
+            section at the bottom of the page.
+            <a href="#output">Jump to event output ↓</a>
+          </p>
+
+          <div class="event-grid">
+            <div class="event-card">
+              <h3>1. onDblClick</h3>
+              <p>Double-click the button.</p>
+
+              <button
+                ondblclick="{
+                    document.getElementById('output').textContent =
+                        'You double-clicked the button!';
+                }"
+              >
+                Double Click Me
+              </button>
+            </div>
+
+            <div class="event-card">
+              <h3>2. onChange</h3>
+              <p>Change the text, then leave the input.</p>
+
+              <input
+                type="text"
+                onchange="{
+                           document.getElementById('output').textContent =
+                               'The input value changed to: ' + this.value;
+                       }"
+                placeholder="Change this text"
+                aria-label="Change this text"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>3. onFocus</h3>
+              <p>Click inside the input.</p>
+
+              <input
+                type="text"
+                onfocus="{
+                           document.getElementById('output').textContent =
+                               'The input received focus!';
+                       }"
+                placeholder="Click inside me"
+                aria-label="Click inside me"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>4. onBlur</h3>
+              <p>Click inside, then click somewhere else.</p>
+
+              <input
+                type="text"
+                onblur="{
+                           document.getElementById('output').textContent =
+                               'The input lost focus!';
+                       }"
+                placeholder="Click away after typing"
+                aria-label="Click away after typing"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>5. onMouseMove</h3>
+              <p>Move your mouse inside the box.</p>
+
+              <div
+                class="demo-box"
+                onmousemove="{
+                         document.getElementById('output').textContent =
+                             'Your mouse is moving over the box!';
+                     }"
+              >
+                Move Mouse Here
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>6. onKeyDown</h3>
+              <p>Press any key while typing.</p>
+
+              <input
+                type="text"
+                onkeydown="{
+                           document.getElementById('output').textContent =
+                               'You pressed a key: ' + event.key;
+                       }"
+                placeholder="Press a key"
+                aria-label="Press a key"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>7. onKeyPress</h3>
+              <p>Press a character key.</p>
+
+              <input
+                type="text"
+                onkeypress="{
+                           document.getElementById('output').textContent =
+                               'You pressed a character key!';
+                       }"
+                placeholder="Type a character"
+                aria-label="Type a character"
+              />
+              <p class="small-note">
+                Deprecated event; included for demonstration.
+              </p>
+            </div>
+
+            <div class="event-card">
+              <h3>8. onTouchStart</h3>
+              <p>Touch the box on a touchscreen.</p>
+
+              <div
+                class="demo-box"
+                ontouchstart="{
+                         document.getElementById('output').textContent =
+                             'Touch started!';
+                     }"
+              >
+                Touch Me
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>9. onTouchEnd</h3>
+              <p>Touch and release the box.</p>
+
+              <div
+                class="demo-box"
+                ontouchend="{
+                         document.getElementById('output').textContent =
+                             'Touch ended!';
+                     }"
+              >
+                Touch and Release
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>10. onTouchMove</h3>
+              <p>Move your finger across the box.</p>
+
+              <div
+                class="demo-box"
+                ontouchmove="{
+                         document.getElementById('output').textContent =
+                             'Your finger is moving!';
+                     }"
+              >
+                Move Your Finger
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>11. onDragStart</h3>
+              <p>Drag the box with your mouse.</p>
+
+              <div
+                class="demo-box"
+                draggable="true"
+                ondragstart="{
+                         document.getElementById('output').textContent =
+                             'You started dragging the box!';
+                     }"
+              >
+                Drag This Box
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>12. onInput</h3>
+              <p>Watch the output update as you type.</p>
+
+              <input
+                type="text"
+                oninput="{
+                           document.getElementById('output').textContent =
+                               'You are typing: ' + this.value;
+                       }"
+                placeholder="Type something"
+                aria-label="Type something"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>13. onSelect</h3>
+              <p>Highlight some of the text below.</p>
+
+              <input
+                type="text"
+                value="Select this text"
+                aria-label="Text to select"
+                onselect="{
+                           document.getElementById('output').textContent =
+                               'You selected text in the input!';
+                       }"
+              />
+            </div>
+
+            <div class="event-card">
+              <h3>14. onContextMenu</h3>
+              <p>Right-click the box.</p>
+
+              <div
+                class="demo-box"
+                oncontextmenu="{
+                         event.preventDefault();
+                         document.getElementById('output').textContent =
+                             'You right-clicked the box!';
+                     }"
+              >
+                Right-Click Me
+              </div>
+            </div>
+
+            <div class="event-card">
+              <h3>15. onMouseDown</h3>
+              <p>Press and hold the mouse button.</p>
+
+              <button
+                onmousedown="{
+                    document.getElementById('output').textContent =
+                        'The mouse button is pressed down!';
+                }"
+              >
+                Hold Mouse Button
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Event Output</h2>
+
+          <p>
+            When you interact with the examples above, the JavaScript event
+            messages will appear here.
+          </p>
+
+          <div class="lesson-result" id="output" aria-live="polite">
+            Try an event above to see what happens!
+          </div>
+
+          <br />
+
+          <button
+            onclick="{
+            document.getElementById('output').textContent =
+                'Try an event above to see what happens!';
+        }"
+          >
+            Reset Output
+          </button>
+        </div>
+
+        <div class="lab-panel lesson-section">
+          <h2>Assignment Checklist</h2>
+
+          <div class="lesson-callout">
+            <b>Things demonstrated on this page:</b>
+
+            <ul>
+              <li>Use an onClick event to display text.</li>
+              <li>Use onMouseOver and onMouseOut to change text.</li>
+              <li>Demonstrate at least 8 additional events.</li>
+              <li>Display JavaScript results on the webpage.</li>
+              <li>Use CSS to style and organize the examples.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="lesson-credit">HTML Events Project · Created by Aarav</p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"
+          ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev /
+          Aarav</a
+        >
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+  </body>
+</html>

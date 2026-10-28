@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Powerup — GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"
+        ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev
+        <span class="brand-by">/ Aarav</span></a
+      ><a class="exercise-home" href="index.html#assignments"
+        >← All assignments</a
+      >
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 16 / GAMEDEV 2026</p>
+        <h1>Powerup</h1>
+        <p>Practice managing the state of a hero object.</p>
+      </div>
+      <div class="lesson-stack">
+        <div class="lab-grid">
+          <section class="lab-panel lesson-section">
+            <p class="lab-kicker">STATEFUL OBJECT ASSIGNMENT</p>
+            <h2>Train a hero.</h2>
+            <p>Student Name ___________________ · Date ___________________</p>
+            <div class="lesson-callout">
+              <h3>Assignment prompt</h3>
+              <ol>
+                <li>
+                  Define a global object called <code>myHero</code> with a name,
+                  power of 100, and a comment.
+                </li>
+                <li>
+                  Complete <code>trainHero()</code> to subtract 10 from power
+                  each time.
+                </li>
+                <li>
+                  Use <code>if / else if / else</code> to update the comment for
+                  high, medium, and low power.
+                </li>
+                <li>
+                  At zero or below, alert the user, update the comment, and
+                  reset power to 100.
+                </li>
+                <li>
+                  Complete the button’s <code>onclick</code> to call
+                  <code>trainHero()</code> and display the hero’s details.
+                </li>
+              </ol>
+            </div>
+            <p>
+              Each training session uses 10 power. At zero, the hero rests and returns to full power.
+            </p>
+            <input
+              type="button"
+              value="Train Hero (-10 Power)"
+              onclick="trainHero()"
+            />
+            <div class="lesson-result" id="myDiv01" aria-live="polite">
+              Click the button above to begin training! Initial Power: 100
+            </div>
+          </section>
+          <aside class="lab-code">
+            <div class="lab-code-head">
+              <span>STARTER OBJECT</span
+              ><img class="lab-code-mark" src="assets/spark.svg" alt="" />
+            </div>
+            <pre><code>let myHero = {
+  name: 'Captain Code',
+  power: 100,
+  comment: 'Ready for training!'
+};</code></pre>
+          </aside>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"
+          ><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev /
+          Aarav</a
+        >
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+    <script>
+      <!-- All functions go here -->
+
+      // STEP 1: Define a global object named `myHero`
+      // Properties needed: name (string), power (number, starting at 100), comment (string)
+      let myHero = {
+        name: "Captain Code",
+        power: 100,
+        comment: "Ready for training!",
+      };
+
+      function trainHero() {
+        myHero.power -= 10;
+        if (myHero.power <= 0) {
+          alert(myHero.name + " needs to rest! Power has been restored.");
+          myHero.comment = "Rested and ready to train again!";
+          myHero.power = 100;
+        } else if (myHero.power >= 70) {
+          myHero.comment = "Feeling strong!";
+        } else if (myHero.power >= 30) {
+          myHero.comment = "Getting tired, but still going.";
+        } else {
+          myHero.comment = "Almost out of power!";
+        }
+        document.getElementById("myDiv01").textContent =
+          myHero.name + " · Power: " + myHero.power + " · " + myHero.comment;
+      }
+    </script>
+  </body>
+</html>

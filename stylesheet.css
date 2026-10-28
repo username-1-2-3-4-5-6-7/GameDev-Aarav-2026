@@ -49,15 +49,15 @@ body:not(.home){max-width:1100px;margin:0 auto;padding:40px;color:var(--body)}bo
 .visual-css i, .visual-decision i, .visual-loop { color: var(--ink); }
 .dark-card .card-top, .dark-card p, .dark-card .card-bottom { color: var(--dark-muted); }
 .dark-card .card-bottom { border-color: var(--dark-elevated); }
-.assignment-card:last-child { grid-column: span 3; min-height: 230px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto; column-gap: 32px; }
-.assignment-card:last-child .card-top, .assignment-card:last-child .card-bottom { grid-column: 1 / -1; }
-.assignment-card:last-child .card-visual { grid-column: 2; grid-row: 2; margin: 0; }
-.assignment-card:last-child > div:nth-child(3) { grid-column: 1; grid-row: 2; align-self: center; }
+.assignment-card.featured-card { grid-column: span 3; min-height: 230px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr auto; column-gap: 32px; }
+.assignment-card.featured-card .card-top, .assignment-card.featured-card .card-bottom { grid-column: 1 / -1; }
+.assignment-card.featured-card .card-visual { grid-column: 2; grid-row: 2; margin: 0; }
+.assignment-card.featured-card > div:nth-child(3) { grid-column: 1; grid-row: 2; align-self: center; }
 .closing h2 { font-size: 36px; letter-spacing: -.5px; line-height: 1.15; }
 .closing p:not(.eyebrow) { font-size: 16px; }
 .footer-inner { min-height: 160px; font-size: 14px; }
 .footer-brand span { color: var(--dark-muted); }
-@media (min-width: 768px) and (max-width: 1023px) { .assignment-grid { grid-template-columns: repeat(2, 1fr); } .assignment-card:last-child { grid-column: span 2; } }
+@media (min-width: 768px) and (max-width: 1023px) { .assignment-grid { grid-template-columns: repeat(2, 1fr); } .assignment-card.featured-card { grid-column: span 2; } }
 @media (max-width: 767px) {
   .site-header > nav { display: none; }
   .mobile-menu { display: block; }
@@ -69,8 +69,8 @@ body:not(.home){max-width:1100px;margin:0 auto;padding:40px;color:var(--body)}bo
   .hero { grid-template-columns: 1fr; padding-block: 64px; }
   .hero h1 { font-size: 40px; }
   .assignment-grid { grid-template-columns: 1fr; }
-  .assignment-card:last-child { grid-column: auto; min-height: 330px; display: flex; }
-  .assignment-card:last-child .card-visual { margin: 10px 0 20px; }
+  .assignment-card.featured-card { grid-column: auto; min-height: 330px; display: flex; }
+  .assignment-card.featured-card .card-visual { margin: 10px 0 20px; }
   .section-heading h2 { font-size: 36px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -102,7 +102,7 @@ body:not(.home) .exercise-content canvas { display: block; }
 }
 
 @media (max-width: 767px) {
-  .assignment-card:last-child > div:nth-child(3) { align-self: stretch; }
+  .assignment-card.featured-card > div:nth-child(3) { align-self: stretch; }
 }
 .exercise-main > canvas { display: block; margin-top: 24px; border-radius: 12px; }
 
@@ -229,3 +229,35 @@ body:not(.home) .exercise-content caption { white-space: nowrap; }
 body:not(.home) { min-height: 100vh; display: flex; flex-direction: column; }
 body:not(.home) .exercise-main { flex: 1 0 auto; }
 #assignments { scroll-margin-top: 80px; }
+
+/* Shared lesson layouts for events, arrays, and project briefs. */
+.lesson-stack { display: grid; gap: 16px; }
+.lesson-section > h2 { margin-bottom: 12px; }
+.lesson-section > p { max-width: 720px; }
+.lesson-section a:not(.button) { color: var(--coral-active); }
+.lesson-callout, .lesson-result { background: var(--canvas); border: 1px solid var(--line); border-radius: 8px; padding: 20px; }
+.lesson-callout h3 { margin-top: 0; }
+.lesson-callout ol, .lesson-section > ol, .lesson-section ul { padding-left: 24px; }
+.lesson-callout li, .lesson-section > ol li, .lesson-section ul li { margin-block: 8px; }
+.lesson-result { margin-top: 16px; overflow-wrap: anywhere; }
+.lesson-credit { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+.event-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+.event-card { background: var(--canvas); border: 1px solid var(--line); border-radius: 12px; padding: 20px; min-width: 0; }
+.event-card h3 { margin: 0; color: var(--ink); font-size: 16px; font-weight: 500; }
+.event-card p { color: var(--body); font-size: 14px; min-height: 44px; }
+body:not(.home) .lesson-section input:not([type=button]) { width: min(100%, 300px); min-height: 44px; }
+body:not(.home) .lesson-section button, body:not(.home) .lesson-section input[type=button] { min-height: 44px; max-width: 100%; font-size: 14px; font-weight: 500; }
+.demo-box { padding: 18px; border: 1px dashed var(--muted); border-radius: 8px; text-align: center; user-select: none; }
+.small-note { color: var(--muted); font-size: 13px; }
+@media (max-width: 1023px) { .event-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .event-grid { grid-template-columns: 1fr; } }
+body:not(.home) .lesson-section .button-primary { color: #fff; }
+#output { scroll-margin-top: 80px; }
+
+/* Alternate lesson surfaces to keep long exercises easy to scan. */
+.lesson-stack > .lesson-section:nth-child(even) { background: var(--canvas); border: 1px solid var(--line); }
+.lesson-stack > .lesson-section:nth-child(even) .lesson-result,
+.lesson-stack > .lesson-section:nth-child(even) .lesson-callout { background: var(--soft); }
+.lesson-section label { color: var(--ink); font-size: 14px; }
+.lesson-section > input + button { margin-left: 8px; }
+@media (max-width: 767px) { .lesson-section > input + button { margin: 8px 0 0; } }
