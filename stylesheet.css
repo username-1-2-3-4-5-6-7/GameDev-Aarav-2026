@@ -269,3 +269,7 @@ body:not(.home) .lesson-section .button-primary { color: #fff; }
 .assignment-checklist li, .home-checklist li { margin-block: 8px; }
 .lesson-stack > .lesson-section.assignment-checklist { background: var(--card); border: 0; }
 .input-greeting { margin-top: 16px; }
+.visualization-stage { margin-top: 24px; width: 100%; height: 300px; background: var(--dark); border-radius: 12px; overflow: hidden; }
+.visualization-stage[hidden] { display: none; }
+.scene-stage canvas { display: block; width: 100%; height: 100%; }
+@media (max-width: 767px) { .visualization-stage { height: 260px; } }
