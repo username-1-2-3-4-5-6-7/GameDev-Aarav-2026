@@ -261,3 +261,9 @@ body:not(.home) .lesson-section .button-primary { color: #fff; }
 .lesson-section label { color: var(--ink); font-size: 14px; }
 .lesson-section > input + button { margin-left: 8px; }
 @media (max-width: 767px) { .lesson-section > input + button { margin: 8px 0 0; } }
+.event-card-result { margin-top: 16px; padding: 12px; border-radius: 8px; background: var(--soft); color: var(--body); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.event-card [ontouchmove] { touch-action: none; }
+.assignment-checklist { margin-top: 48px; }
+.home-checklist { margin-bottom: 48px; }
+.assignment-checklist ul, .home-checklist ul { margin: 20px 0 0; padding-left: 24px; }
+.assignment-checklist li, .home-checklist li { margin-block: 8px; }

@@ -97,7 +97,7 @@
           <h2>More JavaScript Events</h2>
 
           <p class="small-note">
-            Try each activity below. The results appear in the Event Output
+            Try each activity below. Its result appears in the card and in the Event Output
             section at the bottom of the page.
             <a href="#output">Jump to event output ↓</a>
           </p>
@@ -385,5 +385,35 @@
         <p>Made while learning, in 2026.</p>
       </div>
     </footer>
+    <script>
+      // Show the shared event output beside the example that triggered it.
+      const myEventTypes = [
+        "dblclick", "change", "focusin", "focusout", "mousemove",
+        "keydown", "keypress", "touchstart", "touchend", "touchmove",
+        "dragstart", "input", "select", "contextmenu", "mousedown",
+      ];
+      const myDefaultEventMessage = "Try this event to see its result.";
+      const myDefaultOutputMessage = "Try an event above to see what happens!";
+      let myOutputResetTimer;
+      document.querySelectorAll(".event-card").forEach((myCard, myIndex) => {
+        const myResult = document.createElement("div");
+        let myResetTimer;
+        myResult.className = "event-card-result";
+        myResult.setAttribute("aria-live", "polite");
+        myResult.textContent = myDefaultEventMessage;
+        myCard.appendChild(myResult);
+        myCard.addEventListener(myEventTypes[myIndex], () => {
+          myResult.textContent = document.getElementById("output").textContent;
+          clearTimeout(myResetTimer);
+          myResetTimer = setTimeout(() => {
+            myResult.textContent = myDefaultEventMessage;
+          }, 3000);
+          clearTimeout(myOutputResetTimer);
+          myOutputResetTimer = setTimeout(() => {
+            document.getElementById("output").textContent = myDefaultOutputMessage;
+          }, 3000);
+        });
+      });
+    </script>
   </body>
 </html>
