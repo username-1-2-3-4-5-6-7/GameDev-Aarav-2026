@@ -268,3 +268,4 @@ body:not(.home) .lesson-section .button-primary { color: #fff; }
 .assignment-checklist ul, .home-checklist ul { margin: 20px 0 0; padding-left: 24px; }
 .assignment-checklist li, .home-checklist li { margin-block: 8px; }
 .lesson-stack > .lesson-section.assignment-checklist { background: var(--card); border: 0; }
+.input-greeting { margin-top: 16px; }

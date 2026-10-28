@@ -10,17 +10,84 @@
   <body>
     <header class="exercise-header"><a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html#assignments">← All assignments</a></header>
     <main class="exercise-main">
-      <div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 05 / GAMEDEV 2026</p><h1>Input / Output</h1><p>Exploring how a program receives and shares information.</p></div>
-      <section class="lab-panel empty-exercise"><p class="lab-kicker">WORK IN PROGRESS</p><h2>More to come.</h2><p>This exercise hasn’t been added yet. Explore the other assignments in the meantime.</p><a class="button button-primary" href="index.html#assignments">Explore assignments <span aria-hidden="true">→</span></a></section>
-        <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
-      <p class="lab-kicker">THE TAKEAWAY</p>
-      <h2 id="checklist-title">What this example shows</h2>
-      <ul>
-          <li>This assignment is still a work in progress.</li>
-          <li>Explore the other assignments while this exercise is being prepared.</li>
-      </ul>
-    </section>
+      <div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 05 / GAMEDEV 2026</p><h1>Input / Output</h1><p>Explore how a program receives information and shares a result.</p></div>
+      <div class="lab-grid">
+        <section class="lab-panel" aria-labelledby="calculator-title">
+          <p class="lab-kicker">01 / TRY IT</p>
+          <h2 id="calculator-title">Square a number.</h2>
+          <p>Enter a number to see what happens when it is multiplied by itself.</p>
+          <form id="myForm" novalidate>
+            <label class="lab-label" for="myNum01">Your number</label>
+            <div class="lab-input-row"><input id="myNum01" type="number" value="4" step="any" required /><button type="submit">Calculate square</button></div>
+          </form>
+          <div class="lab-output"><span class="sample-label">RESULT</span><div id="myDiv01" aria-live="polite">Your result will appear here.</div></div>
+        </section>
+        <aside class="lab-code" aria-label="Input and output example">
+          <div class="lab-code-head"><span>INPUT / OUTPUT</span><img class="lab-code-mark" src="assets/spark.svg" alt="" /></div>
+          <pre><code>const myInput =
+  document.getElementById("myNum01");
+const myOutput =
+  document.getElementById("myDiv01");
+const myNumber = myInput.valueAsNumber;
+const myAnswer = myNumber * myNumber;
+
+myOutput.textContent =
+  `${myNumber} squared = ${myAnswer}`;</code></pre>
+        </aside>
+      </div>
+      <div class="lab-grid input-greeting">
+        <section class="lab-panel" aria-labelledby="greeting-title">
+          <p class="lab-kicker">02 / TRY IT</p>
+          <h2 id="greeting-title">Make a greeting.</h2>
+          <p>Enter a name and see how text input can become a personal message.</p>
+          <form id="myGreetingForm" novalidate>
+            <label class="lab-label" for="myName">Your name</label>
+            <div class="lab-input-row"><input id="myName" type="text" autocomplete="name" maxlength="100" /><button type="submit">Say hello</button></div>
+          </form>
+          <div class="lab-output"><span class="sample-label">RESULT</span><div id="myGreetingOutput" aria-live="polite">Your greeting will appear here.</div></div>
+        </section>
+        <aside class="lab-code" aria-label="Text input and output example">
+          <div class="lab-code-head"><span>TEXT INPUT / OUTPUT</span><img class="lab-code-mark" src="assets/spark.svg" alt="" /></div>
+          <pre><code>const myName = myNameInput.value.trim();
+myGreetingOutput.textContent =
+  `Hello, ${myName}!`;</code></pre>
+        </aside>
+      </div>
+      <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
+        <p class="lab-kicker">THE TAKEAWAY</p><h2 id="checklist-title">What these examples show</h2>
+        <ul><li>Read numbers and text from input fields.</li><li>Check that the input is valid.</li><li>Calculate a result or create a greeting and display it.</li></ul>
+        <p>Learn more about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent">textContent on MDN ↗</a>.</p>
+      </section>
     </main>
     <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
+    <script>
+      const myForm = document.getElementById("myForm");
+      const myInput = document.getElementById("myNum01");
+      const myOutput = document.getElementById("myDiv01");
+      myForm.onsubmit = (myEvent) => {
+        myEvent.preventDefault();
+        const myNumber = myInput.valueAsNumber;
+        if (myInput.value.trim() === "" || !Number.isFinite(myNumber)) {
+          myOutput.textContent = "Please enter a valid number.";
+          return;
+        }
+        const myAnswer = myNumber * myNumber;
+        if (!Number.isFinite(myAnswer)) {
+          myOutput.textContent = "That number is too large to square. Try a smaller number.";
+          return;
+        }
+        myOutput.textContent = `${myNumber} squared = ${myAnswer}`;
+      };
+      const myGreetingForm = document.getElementById("myGreetingForm");
+      const myNameInput = document.getElementById("myName");
+      const myGreetingOutput = document.getElementById("myGreetingOutput");
+      myGreetingForm.onsubmit = (myEvent) => {
+        myEvent.preventDefault();
+        const myName = myNameInput.value.trim();
+        myGreetingOutput.textContent = myName
+          ? `Hello, ${myName}!`
+          : "Please enter a name.";
+      };
+    </script>
   </body>
 </html>
