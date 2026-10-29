@@ -34,6 +34,21 @@ background-color: blue;</code></pre></aside></div><section class="lab-panel lab-
         width: 256px;
       "
     ></textarea></div><div><span class="sample-label">ROUNDED IMAGE</span><img alt="CSS styling example" src="assets/test.jpg" style="border-radius: 128px" /></div></div></section>
+<div class="lab-grid creative-lab">
+  <section class="lab-panel" aria-labelledby="myShapeTitle">
+    <p class="lab-kicker">03 / INTERACTIVE CSS</p>
+    <h2 id="myShapeTitle">Shape a game token.</h2>
+    <p>Adjust the corner radius and rotation to see how CSS transforms the same element.</p>
+    <label class="lab-label" for="myRadius">Corner radius: <output id="myRadiusValue" for="myRadius">20%</output></label>
+    <input id="myRadius" type="range" min="0" max="50" value="20" oninput="myUpdateShape()" />
+    <label class="lab-label" for="myRotation">Rotation: <output id="myRotationValue" for="myRotation">0 degrees</output></label>
+    <input id="myRotation" type="range" min="-180" max="180" value="0" oninput="myUpdateShape()" />
+    <div class="lab-actions"><button type="button" onclick="myResetShape()">Reset shape</button></div>
+    <div class="css-token-stage" aria-label="Game token preview"><div id="myShape" class="css-token">A</div></div>
+  </section>
+  <aside class="lab-code" aria-label="CSS for the game token"><div class="lab-code-head"><span>LIVE CSS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code id="myShapeCode">border-radius: 20%;
+transform: rotate(0deg);</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
       <h2 id="checklist-title">What this example shows</h2>
@@ -41,10 +56,28 @@ background-color: blue;</code></pre></aside></div><section class="lab-panel lab-
           <li>Style text with CSS colors.</li>
           <li>Switch between two sets of styles.</li>
           <li>Apply a background image and rounded corners.</li>
+          <li>Use CSS border radius and transforms to change a shape.</li>
       </ul>
     </section>
     </main>
     <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
+    <script>
+function myUpdateShape() {
+  const myRadius = document.getElementById("myRadius").value;
+  const myRotation = document.getElementById("myRotation").value;
+  const myShape = document.getElementById("myShape");
+  myShape.style.borderRadius = myRadius + "%";
+  myShape.style.transform = "rotate(" + myRotation + "deg)";
+  document.getElementById("myRadiusValue").textContent = myRadius + "%";
+  document.getElementById("myRotationValue").textContent = myRotation + " degrees";
+  document.getElementById("myShapeCode").textContent = "border-radius: " + myRadius + "%;\ntransform: rotate(" + myRotation + "deg);";
+}
+function myResetShape() {
+  document.getElementById("myRadius").value = "20";
+  document.getElementById("myRotation").value = "0";
+  myUpdateShape();
+}
+    </script>
   </body>
 </html>
 

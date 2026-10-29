@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Objects &mdash; GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a>
+      <a class="exercise-home" href="index.html#assignments">&larr; All assignments</a>
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 12 / GAMEDEV 2026</p>
+        <h1>Objects</h1>
+        <p>Explore how JavaScript objects group related properties.</p>
+      </div>
+      <div class="lesson-stack">
+        <section class="lab-panel lesson-section">
+          <h2>Getting to know objects</h2>
+          <div class="lesson-callout">
+            <b>What is an object?</b>
+            <p>An object groups related data as named properties. A property can also contain a function, called a method.</p>
+          </div>
+          <p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects" target="_blank" rel="noopener noreferrer">MDN: Working with objects</a></p>
+        </section>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-label="Explore an object">
+            <p class="lab-kicker">01 / TRY IT</p>
+            <h2>Explore an object</h2>
+            <p>Read the properties of a person object using dot notation.</p>
+            <button class="demo-button" type="button" onclick="myShowPerson()">Show person</button>
+            <div class="lab-output"><span class="sample-label">RESULT</span><div id="myDiv01" aria-live="polite">The person's properties will appear here.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="JavaScript example">
+            <div class="lab-code-head"><span>JAVASCRIPT EXAMPLE</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>const myPerson = { firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue" };
+function myShowPerson() {
+  document.getElementById("myDiv01").textContent = myPerson.firstName + " " + myPerson.lastName + " is " + myPerson.age + " years old and has " + myPerson.eyeColor + " eyes.";
+}</code></pre>
+          </aside>
+        </div>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-labelledby="object-editor-title">
+            <p class="lab-kicker">02 / CHANGE A PROPERTY</p>
+            <h2 id="object-editor-title">Customize a player</h2>
+            <p>Change the player's name, then use the object method to collect a point. The object keeps its updated values until you reset it.</p>
+            <label class="lab-label" for="myPlayerName">Player name</label>
+            <div class="lab-input-row">
+              <input id="myPlayerName" type="text" value="Aarav" maxlength="40" />
+              <button type="button" onclick="myRenamePlayer()">Update name</button>
+            </div>
+            <div class="lab-actions">
+              <button type="button" onclick="myCollectPoint()">Collect a point</button>
+              <button type="button" onclick="myResetPlayer()">Reset player</button>
+            </div>
+            <div class="lab-output"><span class="sample-label">PLAYER OBJECT</span><div id="myPlayerOutput" aria-live="polite">Aarav has 0 points.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="Object manipulation example">
+            <div class="lab-code-head"><span>OBJECT METHODS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>const myPlayer = {
+  name: "Aarav",
+  points: 0,
+  collectPoint() {
+    this.points += 1;
+  }
+};
+
+myPlayer.name = "Aarav";
+myPlayer.collectPoint();</code></pre>
+          </aside>
+        </div>
+        <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
+          <p class="lab-kicker">THE TAKEAWAY</p>
+          <h2 id="takeaway-title">What these examples show</h2>
+          <ul>
+            <li>Create an object with named properties.</li>
+            <li>Read properties using dot notation.</li>
+            <li>Display values from an object on the page.</li>
+            <li>Update an object property and call a method that changes its state.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a>
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+    <script>
+const myPerson = { firstName: "John", lastName: "Doe", age: 50, eyeColor: "blue" };
+function myShowPerson() {
+  document.getElementById("myDiv01").textContent = myPerson.firstName + " " + myPerson.lastName + " is " + myPerson.age + " years old and has " + myPerson.eyeColor + " eyes.";
+}
+
+const myPlayer = {
+  name: "Aarav",
+  points: 0,
+  collectPoint() {
+    this.points += 1;
+  },
+};
+
+function myRenderPlayer() {
+  const myPointLabel = myPlayer.points === 1 ? "point" : "points";
+  document.getElementById("myPlayerOutput").textContent =
+    myPlayer.name + " has " + myPlayer.points + " " + myPointLabel + ".";
+}
+
+function myRenamePlayer() {
+  const myName = document.getElementById("myPlayerName").value.trim();
+  if (!myName) {
+    document.getElementById("myPlayerOutput").textContent = "Please enter a player name.";
+    return;
+  }
+  myPlayer.name = myName;
+  myRenderPlayer();
+}
+
+function myCollectPoint() {
+  myPlayer.collectPoint();
+  myRenderPlayer();
+}
+
+function myResetPlayer() {
+  myPlayer.name = "Aarav";
+  myPlayer.points = 0;
+  document.getElementById("myPlayerName").value = myPlayer.name;
+  myRenderPlayer();
+}
+    </script>
+  </body>
+</html>

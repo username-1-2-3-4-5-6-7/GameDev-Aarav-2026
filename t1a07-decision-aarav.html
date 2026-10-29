@@ -63,6 +63,27 @@
 if (myHour &lt; 18) {
   let myGreeting = "Good evening!";
 }</code></pre></aside></div><p class="lab-footnote">The simple <code>if</code> example only updates the result when the number is 3 or greater.</p>
+<div class="lab-grid creative-lab">
+  <section class="lab-panel" aria-labelledby="myQuestTitle">
+    <p class="lab-kicker">02 / GAME LOGIC</p>
+    <h2 id="myQuestTitle">The locked gate.</h2>
+    <p>A hero finds a gate. Choose their health and whether they carry a key, then see which path the code takes.</p>
+    <label class="lab-label" for="myHealth">Hero health (0 to 100)</label>
+    <div class="lab-input-row"><input id="myHealth" type="number" min="0" max="100" step="1" value="75" /></div>
+    <label class="lab-label"><input id="myHasKey" type="checkbox" /> The hero has the key</label>
+    <div class="lab-actions"><button type="button" onclick="myCheckGate()">Approach the gate</button></div>
+    <div class="lab-output"><span class="sample-label">THE STORY</span><div id="myQuestOutput" aria-live="polite">Your adventure starts at the gate.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="Gate decision example"><div class="lab-code-head"><span>BRANCHING PATHS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>if (health === 0) {
+  return "Rest before continuing.";
+} else if (hasKey &amp;&amp; health &lt; 25) {
+  return "Heal before unlocking the gate.";
+} else if (hasKey) {
+  return "Unlock the gate!";
+} else {
+  return "Find the key.";
+}</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
       <h2 id="checklist-title">What this example shows</h2>
@@ -70,10 +91,31 @@ if (myHour &lt; 18) {
           <li>Compare an entered number with a condition.</li>
           <li>Try simple if, if / else, and compound conditions.</li>
           <li>Display the result of each decision.</li>
+          <li>Combine conditions to choose a path through a game scenario.</li>
       </ul>
     </section>
     </main>
     <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
+    <script>
+function myCheckGate() {
+  const myInput = document.getElementById("myHealth").value;
+  const myHealth = Number(myInput);
+  const myHasKey = document.getElementById("myHasKey").checked;
+  let myStory;
+  if (myInput.trim() === "" || !Number.isInteger(myHealth) || myHealth < 0 || myHealth > 100) {
+    myStory = "Enter a whole-number health value from 0 to 100.";
+  } else if (myHealth === 0) {
+    myStory = "The hero needs to rest before continuing.";
+  } else if (myHasKey && myHealth < 25) {
+    myStory = "The hero has the key, but should heal before unlocking the gate.";
+  } else if (myHasKey) {
+    myStory = "The hero unlocks the gate and steps into a new adventure!";
+  } else {
+    myStory = "The gate is locked. The hero must find the key.";
+  }
+  document.getElementById("myQuestOutput").textContent = myStory;
+}
+    </script>
   </body>
 </html>
 

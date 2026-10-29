@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Classes &mdash; GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a>
+      <a class="exercise-home" href="index.html#assignments">&larr; All assignments</a>
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 13 / GAMEDEV 2026</p>
+        <h1>Classes</h1>
+        <p>Create objects from a reusable blueprint.</p>
+      </div>
+      <div class="lesson-stack">
+        <section class="lab-panel lesson-section">
+          <h2>Getting to know classes</h2>
+          <div class="lesson-callout">
+            <b>What is a class?</b>
+            <p>A class is a blueprint for creating objects with shared behavior. Its constructor initializes each instance, and its methods define what it can do.</p>
+          </div>
+          <p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener noreferrer">MDN: Classes</a></p>
+        </section>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-label="Create an animal">
+            <p class="lab-kicker">01 / TRY IT</p>
+            <h2>Create an animal</h2>
+            <p>Create an animal named Snickers, then call its method to display its details.</p>
+            <button class="demo-button" type="button" onclick="myShowAnimal()">Show animal</button>
+            <div class="lab-output"><span class="sample-label">RESULT</span><div id="myDiv01" aria-live="polite">The animal's details will appear here.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="JavaScript example">
+            <div class="lab-code-head"><span>JAVASCRIPT EXAMPLE</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>class myAnimal {
+  constructor(myName, myAge) {
+    this.myName = myName;
+    this.myAge = myAge;
+  }
+  myShow() { return this.myName + " is " + this.myAge + " years old."; }
+}
+function myShowAnimal() {
+  const myDog = new myAnimal("Snickers", 5);
+  document.getElementById("myDiv01").textContent = myDog.myShow();
+}</code></pre>
+          </aside>
+        </div>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-labelledby="animal-editor-title">
+            <p class="lab-kicker">02 / WORK WITH AN INSTANCE</p>
+            <h2 id="animal-editor-title">Create your own animal</h2>
+            <p>Choose a name and age to create an instance. Then call its birthday method to update its age.</p>
+            <label class="lab-label" for="myAnimalName">Animal name</label>
+            <div class="lab-input-row"><input id="myAnimalName" type="text" value="Milo" maxlength="40" /></div>
+            <label class="lab-label" for="myAnimalAge">Age in years</label>
+            <div class="lab-input-row"><input id="myAnimalAge" type="number" value="3" min="0" max="150" step="1" /></div>
+            <div class="lab-actions">
+              <button type="button" onclick="myCreateAnimal()">Create animal</button>
+              <button type="button" onclick="myAnimalBirthday()">Celebrate birthday</button>
+              <button type="button" onclick="myResetAnimal()">Reset</button>
+            </div>
+            <div class="lab-output"><span class="sample-label">YOUR ANIMAL</span><div id="myAnimalOutput" aria-live="polite">Create an animal to get started.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="Class manipulation example">
+            <div class="lab-code-head"><span>INSTANCE METHODS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>class myPet extends myAnimal {
+  myBirthday() {
+    this.myAge += 1;
+  }
+}
+
+const myPetInstance = new myPet("Milo", 3);
+myPetInstance.myBirthday();
+myPetInstance.myShow();</code></pre>
+          </aside>
+        </div>
+        <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
+          <p class="lab-kicker">THE TAKEAWAY</p>
+          <h2 id="takeaway-title">What these examples show</h2>
+          <ul>
+            <li>Declare a class and its constructor.</li>
+            <li>Create an instance using <code>new</code>.</li>
+            <li>Call a method that reads an instance&#39;s properties.</li>
+            <li>Create a customized instance and change its state with a method.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a>
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+    <script>
+class myAnimal {
+  constructor(myName, myAge) {
+    this.myName = myName;
+    this.myAge = myAge;
+  }
+  myShow() { return this.myName + " is " + this.myAge + " years old."; }
+}
+function myShowAnimal() {
+  const myDog = new myAnimal("Snickers", 5);
+  document.getElementById("myDiv01").textContent = myDog.myShow();
+}
+
+class myPet extends myAnimal {
+  myBirthday() {
+    this.myAge += 1;
+  }
+}
+
+let myPetInstance = null;
+
+function myCreateAnimal() {
+  const myName = document.getElementById("myAnimalName").value.trim();
+  const myAgeInput = document.getElementById("myAnimalAge").value;
+  const myAge = Number(myAgeInput);
+  const myOutput = document.getElementById("myAnimalOutput");
+  if (!myName || myAgeInput.trim() === "" || !Number.isInteger(myAge) || myAge < 0 || myAge > 150) {
+    myOutput.textContent = "Enter a name and a whole-number age from 0 to 150.";
+    return;
+  }
+  myPetInstance = new myPet(myName, myAge);
+  myOutput.textContent = myPetInstance.myShow();
+}
+
+function myAnimalBirthday() {
+  const myOutput = document.getElementById("myAnimalOutput");
+  if (!myPetInstance) {
+    myOutput.textContent = "Create an animal before celebrating its birthday.";
+    return;
+  }
+  myPetInstance.myBirthday();
+  myOutput.textContent = myPetInstance.myShow();
+}
+
+function myResetAnimal() {
+  myPetInstance = null;
+  document.getElementById("myAnimalName").value = "Milo";
+  document.getElementById("myAnimalAge").value = "3";
+  document.getElementById("myAnimalOutput").textContent = "Create an animal to get started.";
+}
+    </script>
+  </body>
+</html>

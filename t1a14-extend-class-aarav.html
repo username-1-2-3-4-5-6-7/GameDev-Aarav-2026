@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Extending classes &mdash; GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a>
+      <a class="exercise-home" href="index.html#assignments">&larr; All assignments</a>
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 14 / GAMEDEV 2026</p>
+        <h1>Extending classes</h1>
+        <p>Build on a class and customize its behavior.</p>
+      </div>
+      <div class="lesson-stack">
+        <section class="lab-panel lesson-section">
+          <h2>Getting to know inheritance</h2>
+          <div class="lesson-callout">
+            <b>What does extending a class mean?</b>
+            <p>A subclass inherits behavior from a parent class. It can also add its own methods or override inherited ones.</p>
+          </div>
+          <p>Reference: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends" target="_blank" rel="noopener noreferrer">MDN: extends</a></p>
+        </section>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-label="Meet the parent class">
+            <p class="lab-kicker">01 / TRY IT</p>
+            <h2>Meet the parent class</h2>
+            <p>Create an animal and display the description provided by its class.</p>
+            <button class="demo-button" type="button" onclick="myShowAnimal()">Show animal</button>
+            <div class="lab-output"><span class="sample-label">RESULT</span><div id="myDiv01" aria-live="polite">The animal's description will appear here.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="JavaScript example">
+            <div class="lab-code-head"><span>JAVASCRIPT EXAMPLE</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>class myAnimal {
+  constructor(myName, myAge) {
+    this.myName = myName;
+    this.myAge = myAge;
+  }
+  myShow() { return this.myName + " is " + this.myAge + " years old."; }
+}
+class myCat extends myAnimal {
+  myShow() { return this.myName + " is a cat and is " + this.myAge + " years old."; }
+}
+function myShowAnimal() {
+  const myDog = new myAnimal("Snickers", 5);
+  document.getElementById("myDiv01").textContent = myDog.myShow();
+}
+function myShowCat() {
+  const myPet = new myCat("Fluffy", 14);
+  document.getElementById("myDiv02").textContent = myPet.myShow();
+}</code></pre>
+          </aside>
+        </div>
+        <section class="lab-panel lesson-section">
+          <h2>Meet the subclass</h2>
+          <p>Create a cat using the inherited constructor and its own description method.</p>
+          <button class="demo-button" type="button" onclick="myShowCat()">Show cat</button>
+          <div class="lesson-result" id="myDiv02" aria-live="polite">The cat's description will appear here.</div>
+        </section>
+        <div class="lab-grid">
+          <section class="lab-panel" aria-labelledby="myDogTitle">
+            <p class="lab-kicker">02 / BUILD A SUBCLASS</p>
+            <h2 id="myDogTitle">Train a dog</h2>
+            <p>Create a three-year-old dog with its own trick. Its subclass uses the animal constructor, then adds and changes a property of its own.</p>
+            <label class="lab-label" for="myDogName">Dog's name</label>
+            <div class="lab-input-row"><input id="myDogName" type="text" value="Scout" maxlength="40" /></div>
+            <label class="lab-label" for="myDogTrick">Trick</label>
+            <div class="lab-input-row"><input id="myDogTrick" type="text" value="sit" maxlength="40" /></div>
+            <div class="lab-actions">
+              <button type="button" onclick="myCreateDog()">Create dog</button>
+              <button type="button" onclick="myTeachTrick()">Teach trick</button>
+              <button type="button" onclick="myResetDog()">Reset</button>
+            </div>
+            <div class="lab-output"><span class="sample-label">YOUR DOG</span><div id="myDogOutput" aria-live="polite">Create a dog to get started.</div></div>
+          </section>
+          <aside class="lab-code" aria-label="Subclass constructor and method example">
+            <div class="lab-code-head"><span>EXTENDING A CLASS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+            <pre><code>class myDog extends myAnimal {
+  constructor(myName, myAge, myTrick) {
+    super(myName, myAge);
+    this.myTrick = myTrick;
+  }
+
+  myTeach(myTrick) {
+    this.myTrick = myTrick;
+  }
+}
+
+const myPet = new myDog("Scout", 3, "sit");
+myPet.myTeach("roll over");</code></pre>
+          </aside>
+        </div>
+        <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
+          <p class="lab-kicker">THE TAKEAWAY</p>
+          <h2 id="takeaway-title">What these examples show</h2>
+          <ul>
+            <li>Create instances of a parent class and a subclass.</li>
+            <li>Use <code>extends</code> to inherit from a class.</li>
+            <li>Override an inherited method in a subclass.</li>
+            <li>Use <code>super</code> and a subclass method to initialize and update a new property.</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-inner">
+        <a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a>
+        <p>Made while learning, in 2026.</p>
+      </div>
+    </footer>
+    <script>
+class myAnimal {
+  constructor(myName, myAge) {
+    this.myName = myName;
+    this.myAge = myAge;
+  }
+  myShow() { return this.myName + " is " + this.myAge + " years old."; }
+}
+class myCat extends myAnimal {
+  myShow() { return this.myName + " is a cat and is " + this.myAge + " years old."; }
+}
+function myShowAnimal() {
+  const myDog = new myAnimal("Snickers", 5);
+  document.getElementById("myDiv01").textContent = myDog.myShow();
+}
+function myShowCat() {
+  const myPet = new myCat("Fluffy", 14);
+  document.getElementById("myDiv02").textContent = myPet.myShow();
+}
+
+class myDog extends myAnimal {
+  constructor(myName, myAge, myTrick) {
+    super(myName, myAge);
+    this.myTrick = myTrick;
+  }
+
+  myTeach(myTrick) {
+    this.myTrick = myTrick;
+  }
+}
+
+let myTrainedDog = null;
+
+function myRenderDog() {
+  document.getElementById("myDogOutput").textContent =
+    myTrainedDog.myShow() + " Trick: " + myTrainedDog.myTrick + ".";
+}
+
+function myCreateDog() {
+  const myName = document.getElementById("myDogName").value.trim();
+  const myTrick = document.getElementById("myDogTrick").value.trim();
+  if (!myName || !myTrick) {
+    document.getElementById("myDogOutput").textContent = "Enter a name and a trick to create your dog.";
+    return;
+  }
+  myTrainedDog = new myDog(myName, 3, myTrick);
+  myRenderDog();
+}
+
+function myTeachTrick() {
+  const myOutput = document.getElementById("myDogOutput");
+  const myTrick = document.getElementById("myDogTrick").value.trim();
+  if (!myTrainedDog) {
+    myOutput.textContent = "Create a dog before teaching it a trick.";
+    return;
+  }
+  if (!myTrick) {
+    myOutput.textContent = "Enter a trick to teach your dog.";
+    return;
+  }
+  myTrainedDog.myTeach(myTrick);
+  myRenderDog();
+}
+
+function myResetDog() {
+  myTrainedDog = null;
+  document.getElementById("myDogName").value = "Scout";
+  document.getElementById("myDogTrick").value = "sit";
+  document.getElementById("myDogOutput").textContent = "Create a dog to get started.";
+}
+    </script>
+  </body>
+</html>
