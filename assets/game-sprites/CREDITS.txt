@@ -1,0 +1,3 @@
+﻿Game art by Kenney (https://kenney.nl), Creative Commons CC0 1.0.
+Source packs: Space Shooter Remastered, Animal Pack, Fish Pack, Racing Pack, and Sokoban Pack.
+Source mirror: https://github.com/shorepine/kenney/tree/main/2d

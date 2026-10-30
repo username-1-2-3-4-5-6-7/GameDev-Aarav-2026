@@ -40,3 +40,20 @@ body:not(.home) .passion-canvas { display: block; width: 100%; max-width: 640px;
 .game-dpad { display: flex; gap: 6px; flex-wrap: wrap; }
 body:not(.home) .game-dpad button { width: 48px; height: 48px; padding: 0; background: var(--canvas); color: var(--ink); border: 1px solid var(--line); font-size: 20px; }
 .game-hint { color: var(--muted); font-size: 12px; letter-spacing: 1px; margin: 12px 0 0; }
+/* Arcade presentation uses the same warm, editorial design tokens. */
+.passion-project { position: relative; }
+.game-stage { max-width: 688px; padding: 16px; border-radius: 12px; background: var(--dark); }
+.game-stage-head { display: flex; justify-content: space-between; gap: 12px; padding: 0 4px 12px; color: var(--dark-muted); font-size: 11px; font-weight: 500; letter-spacing: 1.3px; }
+body:not(.home) .game-stage .passion-canvas { max-width: 100%; border: 0; border-radius: 8px; }
+.game-controls { gap: 12px; }
+.game-controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.game-controls button[hidden] { display: none; }
+.game-controls button img { width: 18px; height: 18px; }
+.game-controls [data-action=start] img { filter: invert(1); }
+.game-dpad { padding: 6px; border-radius: 12px; background: var(--cream-strong); }
+body:not(.home) .game-dpad button { border-radius: 8px; }
+.passion-project .lab-output { max-width: 688px; }
+.passion-project .lab-output .sample-label { color: var(--muted); }
+.game-impact { animation: game-impact 180ms ease-out; }
+@keyframes game-impact { 25% { transform: translateX(-3px); } 55% { transform: translateX(3px); } 85% { transform: translateX(-1px); } }
+@media (prefers-reduced-motion: reduce) { .game-impact { animation: none; } }
