@@ -27,19 +27,22 @@ while (true) {
   <section class="lab-panel" aria-labelledby="myLoopTitle">
     <p class="lab-kicker">02 / EXPLORE A FOR LOOP</p>
     <h2 id="myLoopTitle">Count and make decisions.</h2>
-    <p>Choose how many times to loop, then mark the second half or identify even numbers. Multiples of your special number are marked in both examples.</p>
+    <p>Choose how many times to loop, then mark numbers where the loop index doubled is greater than the loop limit, or identify even numbers. Multiples of your special number are marked in both examples.</p>
     <label class="lab-label" for="myNum01">Number of loops (0 to 100)</label>
     <div class="lab-input-row"><input id="myNum01" type="number" min="0" max="100" step="1" value="4" /></div>
     <label class="lab-label" for="myWeird">Special number (1 to 100)</label>
     <div class="lab-input-row"><input id="myWeird" type="number" min="1" max="100" step="1" value="2" /></div>
     <div class="lab-actions">
-      <button type="button" onclick="myRunLoops('half')">Mark the second half</button>
+      <button type="button" onclick="myRunLoops('half')">Check doubled index</button>
       <button type="button" onclick="myRunLoops('even')">Identify even numbers</button>
     </div>
     <div class="lab-output"><span class="sample-label">LOOP RESULTS</span><div id="myDiv01" aria-live="polite">Choose an example to run the loop.</div></div>
     <p class="lab-caption">Loops start at 0 and stop before the number of loops. Zero is even and is a multiple of every nonzero integer.</p>
   </section>
   <aside class="lab-code" aria-label="For loop example"><div class="lab-code-head"><span>FOR LOOP</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>for (let myLoop = 0; myLoop &lt; myMax; myLoop++) {
+  if (myLoop * 2 &gt; myMax) {
+    // The doubled index exceeds the limit.
+  }
   if (myLoop % 2 === 0) {
     // This number is even.
   }
@@ -47,6 +50,18 @@ while (true) {
     // This is a multiple of the special number.
   }
 }</code></pre></aside>
+</div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Pause a loop with a generator</h2><p>A generator function can yield one value at a time. Each call to next() resumes the loop until its next yield, so you can step through it yourself.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Next number</button><button type="button" onclick="myResetNiche()">Reset</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>function* count() {
+  for (let i = 0; i &lt; 3; i++) yield i;
+}
+const counter = count();
+counter.next();</code></pre></aside>
 </div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
@@ -83,7 +98,7 @@ while (true) {
         const myLines = [];
         for (let myLoop = 0; myLoop < myMax; myLoop++) {
           const myLabels = [];
-          if (myMode === "half" && myLoop >= myMax / 2) myLabels.push("second half");
+          if (myMode === "half" && myLoop * 2 > myMax) myLabels.push("cool");
           if (myMode === "even" && myLoop % 2 === 0) myLabels.push("even");
           if (myLoop % mySpecial === 0) myLabels.push("multiple of " + mySpecial);
           myLines.push("Loop number: " + myLoop + (myLabels.length ? " - " + myLabels.join(", ") : ""));
@@ -94,6 +109,12 @@ while (true) {
           myOutput.appendChild(document.createTextNode(myLine));
         });
       }
+    </script>
+    <script>
+function* myMakeGenerator() { for (let i = 0; i < 3; i++) yield i; }
+let myNicheGenerator = myMakeGenerator();
+function myRunNiche() { const myStep = myNicheGenerator.next(); document.getElementById("myNicheOutput").textContent = myStep.done ? "Finished. Press reset to start again." : "Yielded: " + myStep.value; }
+function myResetNiche() { myNicheGenerator = myMakeGenerator(); document.getElementById("myNicheOutput").textContent = "Try the example to see the result."; }
     </script>
   </body>
 </html>

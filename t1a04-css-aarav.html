@@ -49,6 +49,15 @@ background-color: blue;</code></pre></aside></div><section class="lab-panel lab-
   <aside class="lab-code" aria-label="CSS for the game token"><div class="lab-code-head"><span>LIVE CSS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code id="myShapeCode">border-radius: 20%;
 transform: rotate(0deg);</code></pre></aside>
 </div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Inspect computed styles</h2><p>getComputedStyle() reads the final CSS value after stylesheets and the browser have resolved it. Change the token above, then inspect its actual corner radius.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Read computed radius</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>const radius = getComputedStyle(myShape).borderRadius;
+output.textContent = radius;</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
       <h2 id="checklist-title">What this example shows</h2>
@@ -77,6 +86,11 @@ function myResetShape() {
   document.getElementById("myRotation").value = "0";
   myUpdateShape();
 }
+    </script>
+    <script>
+
+function myRunNiche() { document.getElementById("myNicheOutput").textContent = "Computed corner radius: " + getComputedStyle(document.getElementById("myShape")).borderRadius; }
+
     </script>
   </body>
 </html>

@@ -79,6 +79,17 @@ myPetInstance.myBirthday();
 myPetInstance.myShow();</code></pre>
           </aside>
         </div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Private class fields</h2><p>A field beginning with # can only be accessed inside its class. A public method can update the private value without exposing it directly.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Feed the pet</button><button type="button" onclick="myResetNiche()">Reset</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>class Pet {
+  #meals = 0;
+  feed() { return ++this.#meals; }
+}</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
           <p class="lab-kicker">THE TAKEAWAY</p>
           <h2 id="takeaway-title">What these examples show</h2>
@@ -147,6 +158,12 @@ function myResetAnimal() {
   document.getElementById("myAnimalAge").value = "3";
   document.getElementById("myAnimalOutput").textContent = "Create an animal to get started.";
 }
+    </script>
+    <script>
+class myPrivatePet { #meals = 0; feed() { return ++this.#meals; } }
+let myNichePet = new myPrivatePet();
+function myRunNiche() { document.getElementById("myNicheOutput").textContent = "Meals served: " + myNichePet.feed() + "."; }
+function myResetNiche() { myNichePet = new myPrivatePet(); document.getElementById("myNicheOutput").textContent = "Try the example to see the result."; }
     </script>
   </body>
 </html>

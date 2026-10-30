@@ -29,13 +29,13 @@
   <section class="lab-panel" aria-labelledby="myScoreTitle">
     <p class="lab-kicker">02 / GAME SCORE</p>
     <h2 id="myScoreTitle">Calculate a level score.</h2>
-    <p>Enter the coins and enemies collected in a level. Two reusable functions work together to calculate your score and award a rank.</p>
+    <p>Enter your coins and enemies defeated. Reusable functions calculate your score, rank, and progress toward the next rank.</p>
     <label class="lab-label" for="myCoins">Coins (0 to 100)</label>
     <div class="lab-input-row"><input id="myCoins" type="number" min="0" max="100" step="1" value="5" /></div>
     <label class="lab-label" for="myEnemies">Enemies defeated (0 to 100)</label>
     <div class="lab-input-row"><input id="myEnemies" type="number" min="0" max="100" step="1" value="2" /></div>
     <div class="lab-actions"><button type="button" onclick="myShowScore()">Calculate score</button></div>
-    <div class="lab-output"><span class="sample-label">LEVEL RESULT</span><div id="myScoreOutput" aria-live="polite">Your score and rank will appear here.</div></div>
+    <div class="lab-output"><span class="sample-label">LEVEL RESULT</span><div id="myScoreOutput" aria-live="polite">Your score and rank will appear here.</div><label class="lab-label score-progress-label" for="myScoreProgress">Progress to Gold</label><progress id="myScoreProgress" max="200" value="0">0</progress></div>
   </section>
   <aside class="lab-code" aria-label="Score functions example"><div class="lab-code-head"><span>FUNCTIONS AT WORK</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>function myCalculateScore(coins, enemies) {
   return coins * 10 + enemies * 25;
@@ -49,6 +49,18 @@ function myRank(score) {
 
 const score = myCalculateScore(5, 2);
 myRank(score); // Silver</code></pre></aside>
+</div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Remember a value with a closure</h2><p>A closure lets a function remember variables from the scope where it was created. This bonus counter retains its own total between button presses.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Collect bonus</button><button type="button" onclick="myResetNiche()">Reset</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>function makeBonus() {
+  let total = 0;
+  return () =&gt; ++total;
+}
+const bonus = makeBonus();</code></pre></aside>
 </div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
@@ -80,11 +92,20 @@ function myShowScore() {
   if ([myCoinInput, myEnemyInput].some(value => value.trim() === "") ||
       ![myCoins, myEnemies].every(value => Number.isInteger(value) && value >= 0 && value <= 100)) {
     myOutput.textContent = "Enter whole numbers from 0 to 100 for both fields.";
+    document.getElementById("myScoreProgress").value = 0;
     return;
   }
   const myScore = myCalculateScore(myCoins, myEnemies);
-  myOutput.textContent = "Score: " + myScore + " points. Rank: " + myRank(myScore) + ".";
+  const myNext = myScore < 100 ? 100 - myScore + " points to Silver." : myScore < 200 ? 200 - myScore + " points to Gold." : "Gold achieved!";
+  myOutput.textContent = myCoins + " coins x 10 + " + myEnemies + " enemies x 25 = " + myScore + " points. " + myRank(myScore) + " rank. " + myNext;
+  document.getElementById("myScoreProgress").value = Math.min(myScore, 200);
 }
+    </script>
+    <script>
+function myMakeBonus() { let myTotal = 0; return () => ++myTotal; }
+let myNicheBonus = myMakeBonus();
+function myRunNiche() { document.getElementById("myNicheOutput").textContent = "Bonuses collected: " + myNicheBonus() + "."; }
+function myResetNiche() { myNicheBonus = myMakeBonus(); document.getElementById("myNicheOutput").textContent = "Try the example to see the result."; }
     </script>
   </body>
 </html>

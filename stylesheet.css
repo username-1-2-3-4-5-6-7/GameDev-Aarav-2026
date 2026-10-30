@@ -281,3 +281,32 @@ body:not(.home) .lesson-section .button-primary { color: #fff; }
 body:not(.home) .creative-lab input[type=checkbox] { width: auto; height: auto; min-height: 0; padding: 0; accent-color: var(--coral); vertical-align: middle; }
 .css-token-stage { display: grid; place-items: center; min-height: 180px; margin-top: 24px; border-radius: 12px; background: var(--canvas); }
 .css-token { display: grid; place-items: center; width: 100px; height: 100px; border-radius: 20%; background: var(--coral); color: var(--canvas); font: 400 48px/1 var(--serif); }
+
+/* Three-dimensional die, using the existing cream and dark surfaces. */
+.dice-stage { display: grid; place-items: center; min-height: 200px; perspective: 600px; overflow: hidden; }
+.dice-cube { width: 100px; height: 100px; position: relative; transform-style: preserve-3d; transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+.dice-face { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-content: center; justify-content: center; gap: 10px; padding: 18px; background: var(--canvas); border: 1px solid var(--line); border-radius: 12px; backface-visibility: hidden; }
+.dice-face span { width: 14px; height: 14px; border-radius: 50%; background: var(--ink); }
+.dice-face-1 { transform: translateZ(50px); }
+.dice-face-2 { transform: rotateY(90deg) translateZ(50px); }
+.dice-face-3 { transform: rotateY(180deg) translateZ(50px); }
+.dice-face-4 { transform: rotateY(-90deg) translateZ(50px); }
+.dice-face-5 { transform: rotateX(90deg) translateZ(50px); }
+.dice-face-6 { transform: rotateX(-90deg) translateZ(50px); }
+.dice-win { color: var(--coral-active); font-weight: 700; }
+.score-progress-label { margin-top: 16px; }
+progress { width: 100%; accent-color: var(--coral); }
+@media (prefers-reduced-motion: reduce) { .dice-cube { transition: none; } }
+
+/* Featured JavaScript lessons use the stronger cream surface from the design system. */
+.niche-lab { background: var(--cream-strong); border-radius: 12px; padding: 24px; gap: 16px; }
+.niche-lab > .lab-panel { background: var(--canvas); }
+.niche-lab .lab-kicker { display: inline-block; padding: 6px 12px; border-radius: 9999px; background: var(--dark); color: var(--canvas); }
+.niche-lab .lab-output { background: var(--soft); }
+.lab-panel h2, .whale-directory h2, .whale-feature h2, .whale-animation-heading h2, .table-title { font-weight: 400; }
+@media (max-width: 767px) { .niche-lab { padding: 16px; } }
+
+progress { appearance: none; height: 8px; border: 0; border-radius: 9999px; overflow: hidden; background: var(--line); }
+progress::-webkit-progress-bar { background: var(--line); border-radius: 9999px; }
+progress::-webkit-progress-value { background: var(--coral-active); border-radius: 9999px; }
+progress::-moz-progress-bar { background: var(--coral-active); border-radius: 9999px; }

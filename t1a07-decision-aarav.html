@@ -64,25 +64,30 @@ if (myHour &lt; 18) {
   let myGreeting = "Good evening!";
 }</code></pre></aside></div><p class="lab-footnote">The simple <code>if</code> example only updates the result when the number is 3 or greater.</p>
 <div class="lab-grid creative-lab">
-  <section class="lab-panel" aria-labelledby="myQuestTitle">
-    <p class="lab-kicker">02 / GAME LOGIC</p>
-    <h2 id="myQuestTitle">The locked gate.</h2>
-    <p>A hero finds a gate. Choose their health and whether they carry a key, then see which path the code takes.</p>
-    <label class="lab-label" for="myHealth">Hero health (0 to 100)</label>
-    <div class="lab-input-row"><input id="myHealth" type="number" min="0" max="100" step="1" value="75" /></div>
-    <label class="lab-label"><input id="myHasKey" type="checkbox" /> The hero has the key</label>
-    <div class="lab-actions"><button type="button" onclick="myCheckGate()">Approach the gate</button></div>
-    <div class="lab-output"><span class="sample-label">THE STORY</span><div id="myQuestOutput" aria-live="polite">Your adventure starts at the gate.</div></div>
+  <section class="lab-panel" aria-labelledby="dice-title">
+    <p class="lab-kicker">02 / ROLL THE DICE</p><h2 id="dice-title">Roll for a six.</h2>
+    <p>Roll a three-dimensional die. A conditional checks the result and celebrates when you land a six.</p>
+    <div class="dice-stage"><div class="dice-cube" id="myDice" aria-hidden="true"><div class="dice-face dice-face-1" aria-hidden="true"><span></span></div><div class="dice-face dice-face-2" aria-hidden="true"><span></span><span></span></div><div class="dice-face dice-face-3" aria-hidden="true"><span></span><span></span><span></span></div><div class="dice-face dice-face-4" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div class="dice-face dice-face-5" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="dice-face dice-face-6" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div></div></div>
+    <div class="lab-actions"><button type="button" id="myRollButton" onclick="myRollDice()">Roll the die</button></div>
+    <div class="lab-output"><span class="sample-label">YOUR ROLL</span><div id="myDiceOutput" aria-live="polite">Ready to roll.</div></div>
+    <p class="lab-caption">The die uses <code>crypto.getRandomValues()</code> and rejection sampling to choose an unbiased face. In an insecure context, it falls back to <code>Math.random()</code>.</p>
   </section>
-  <aside class="lab-code" aria-label="Gate decision example"><div class="lab-code-head"><span>BRANCHING PATHS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>if (health === 0) {
-  return "Rest before continuing.";
-} else if (hasKey &amp;&amp; health &lt; 25) {
-  return "Heal before unlocking the gate.";
-} else if (hasKey) {
-  return "Unlock the gate!";
+  <aside class="lab-code" aria-label="Dice decision"><div class="lab-code-head"><span>DECISIONS IN ACTION</span><img class="lab-code-mark" src="assets/spark.svg" alt="" /></div><pre><code>const roll = myRandomFace();
+if (roll === 6) {
+  celebrate();
 } else {
-  return "Find the key.";
+  showRoll(roll);
 }</code></pre></aside>
+</div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Random values and bias</h2><p>crypto.getRandomValues() supplies random bytes. Since 256 is not divisible by 6, discarding values 252 to 255 before taking the remainder gives each face the same number of possible byte values.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Sample a random face</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>do { crypto.getRandomValues(bytes); }
+while (bytes[0] &gt;= 252);
+const face = bytes[0] % 6 + 1;</code></pre></aside>
 </div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
       <p class="lab-kicker">THE TAKEAWAY</p>
@@ -91,30 +96,34 @@ if (myHour &lt; 18) {
           <li>Compare an entered number with a condition.</li>
           <li>Try simple if, if / else, and compound conditions.</li>
           <li>Display the result of each decision.</li>
-          <li>Combine conditions to choose a path through a game scenario.</li>
+          <li>Use a conditional to celebrate a dice roll of six.</li>
       </ul>
     </section>
     </main>
     <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
     <script>
-function myCheckGate() {
-  const myInput = document.getElementById("myHealth").value;
-  const myHealth = Number(myInput);
-  const myHasKey = document.getElementById("myHasKey").checked;
-  let myStory;
-  if (myInput.trim() === "" || !Number.isInteger(myHealth) || myHealth < 0 || myHealth > 100) {
-    myStory = "Enter a whole-number health value from 0 to 100.";
-  } else if (myHealth === 0) {
-    myStory = "The hero needs to rest before continuing.";
-  } else if (myHasKey && myHealth < 25) {
-    myStory = "The hero has the key, but should heal before unlocking the gate.";
-  } else if (myHasKey) {
-    myStory = "The hero unlocks the gate and steps into a new adventure!";
-  } else {
-    myStory = "The gate is locked. The hero must find the key.";
-  }
-  document.getElementById("myQuestOutput").textContent = myStory;
+let myRollCount = 0;
+function myRandomFace() {
+  if (!globalThis.crypto || !globalThis.crypto.getRandomValues) return Math.floor(Math.random() * 6) + 1;
+  const myBytes = new Uint8Array(1);
+  do { globalThis.crypto.getRandomValues(myBytes); } while (myBytes[0] >= 252);
+  return myBytes[0] % 6 + 1;
 }
+function myRollDice() {
+  const myRoll = myRandomFace();
+  const myAngles = {1: [0, 0], 2: [0, -90], 3: [0, 180], 4: [0, 90], 5: [-90, 0], 6: [90, 0]};
+  myRollCount++;
+  const myAngle = myAngles[myRoll];
+  document.getElementById("myDice").style.transform = "rotateX(" + (myAngle[0] + myRollCount * 720) + "deg) rotateY(" + (myAngle[1] + myRollCount * 720) + "deg)";
+  const myOutput = document.getElementById("myDiceOutput");
+  myOutput.textContent = myRoll === 6 ? "You rolled a six! Brilliant roll!" : "You rolled a " + myRoll + ". Try for a six!";
+  myOutput.classList.toggle("dice-win", myRoll === 6);
+}
+    </script>
+    <script>
+
+function myRunNiche() { document.getElementById("myNicheOutput").textContent = "Sampled face: " + myRandomFace() + "."; }
+
     </script>
   </body>
 </html>

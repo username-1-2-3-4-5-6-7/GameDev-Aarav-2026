@@ -73,6 +73,16 @@ myPlayer.name = "Aarav";
 myPlayer.collectPoint();</code></pre>
           </aside>
         </div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Copy nested objects</h2><p>structuredClone() makes an independent deep copy of supported values. Changing a nested property on the copy does not change the original.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Make a copy</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>const copy = structuredClone(original);
+copy.inventory.coins = 5;
+// original.inventory.coins is still 1</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
           <p class="lab-kicker">THE TAKEAWAY</p>
           <h2 id="takeaway-title">What these examples show</h2>
@@ -132,6 +142,11 @@ function myResetPlayer() {
   document.getElementById("myPlayerName").value = myPlayer.name;
   myRenderPlayer();
 }
+    </script>
+    <script>
+
+function myRunNiche() { const myOriginal = { inventory: { coins: 1 } }; const myCopy = structuredClone(myOriginal); myCopy.inventory.coins = 5; document.getElementById("myNicheOutput").textContent = "Original: " + myOriginal.inventory.coins + " coin. Copy: " + myCopy.inventory.coins + " coins."; }
+
     </script>
   </body>
 </html>

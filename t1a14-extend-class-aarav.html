@@ -96,6 +96,16 @@ const myPet = new myDog("Scout", 3, "sit");
 myPet.myTeach("roll over");</code></pre>
           </aside>
         </div>
+<div class="lab-grid creative-lab niche-lab">
+  <section class="lab-panel" aria-labelledby="myNicheTitle">
+    <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p><h2 id="myNicheTitle">Trace the prototype chain</h2><p>The instanceof operator checks whether a constructor's prototype appears in an object's prototype chain. A dog instance is both a dog and an animal because the dog class extends the animal class.</p>
+    <div class="lab-actions"><button type="button" onclick="myRunNiche()">Inspect inheritance</button></div>
+    <div class="lab-output"><span class="sample-label">RESULT</span><div id="myNicheOutput" aria-live="polite">Try the example to see the result.</div></div>
+  </section>
+  <aside class="lab-code" aria-label="JavaScript concept example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>const pet = new myDog("Scout", 3, "sit");
+pet instanceof myDog;    // true
+pet instanceof myAnimal; // true</code></pre></aside>
+</div>
         <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="takeaway-title">
           <p class="lab-kicker">THE TAKEAWAY</p>
           <h2 id="takeaway-title">What these examples show</h2>
@@ -184,6 +194,11 @@ function myResetDog() {
   document.getElementById("myDogTrick").value = "sit";
   document.getElementById("myDogOutput").textContent = "Create a dog to get started.";
 }
+    </script>
+    <script>
+
+function myRunNiche() { const myPet = new myDog("Scout", 3, "sit"); document.getElementById("myNicheOutput").textContent = "Is a dog: " + (myPet instanceof myDog) + ". Is an animal: " + (myPet instanceof myAnimal) + "."; }
+
     </script>
   </body>
 </html>
