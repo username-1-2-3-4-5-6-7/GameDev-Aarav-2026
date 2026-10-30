@@ -310,3 +310,14 @@ progress { appearance: none; height: 8px; border: 0; border-radius: 9999px; over
 progress::-webkit-progress-bar { background: var(--line); border-radius: 9999px; }
 progress::-webkit-progress-value { background: var(--coral-active); border-radius: 9999px; }
 progress::-moz-progress-bar { background: var(--coral-active); border-radius: 9999px; }
+
+/* Forms exercise: controls share the assignment's warm surfaces. */
+.forms-demo { display: grid; gap: 8px; }
+.forms-demo .lab-label:not(:first-child) { margin-top: 16px; }
+.forms-demo fieldset { margin: 16px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
+.forms-demo legend { padding: 0 4px; color: var(--ink); font-size: 14px; font-weight: 500; }
+.forms-demo fieldset label { display: inline-flex; align-items: center; gap: 8px; margin: 4px 16px 4px 0; }
+body:not(.home) .forms-demo input[type=checkbox], body:not(.home) .forms-demo input[type=radio] { width: auto; height: auto; padding: 0; accent-color: var(--coral); }
+body:not(.home) .forms-demo textarea, body:not(.home) .forms-demo select { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--canvas); color: var(--ink); font: inherit; }
+.forms-demo input[type=file] { width: 100%; }
+#myFormOutput { white-space: pre-line; overflow-wrap: anywhere; }

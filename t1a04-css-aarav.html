@@ -10,20 +10,20 @@
   <body>
     <header class="exercise-header"><a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a><a class="exercise-home" href="index.html#assignments">← All assignments</a></header>
     <main class="exercise-main"><div class="exercise-intro"><p class="eyebrow">ASSIGNMENT 04 / GAMEDEV 2026</p><h1>CSS</h1><p>Explore color, typography, and visual style.</p></div>
-<div class="lab-grid"><section class="lab-panel" aria-label="CSS style exercise"><p class="lab-kicker">01 / STYLE EXPERIMENT</p><h2>One element, two styles.</h2><p>Click the button to switch the colors on the italic text.</p><div class="style-sample"><span class="sample-label">THE ORIGINAL</span><i>This is italicized</i><span class="sample-label">WITH DIFFERENT CSS</span><i id="i" style="color: rgb(0, 255, 0); background-color: blue">This is italicized... but with different CSS</i></div><input
+<div class="lab-grid"><section class="lab-panel" aria-label="CSS style exercise"><p class="lab-kicker">01 / STYLE EXPERIMENT</p><h2>One element, two styles.</h2><p>Click the button to switch the colors on the italic text.</p><div class="style-sample"><span class="sample-label">THE ORIGINAL</span><i>This is italicized</i><span class="sample-label">WITH DIFFERENT CSS</span><i id="i" style="color: rgb(250, 249, 245); background-color: rgb(24, 23, 21)">This is italicized... but with different CSS</i></div><input
         type="button"
         value="Switch styles"
         onClick="{
-          if (getComputedStyle(document.getElementById('i')).color === 'rgb(255, 0, 0)') {
-              document.getElementById('i').style.color = 'rgb(0, 255, 0)';
-              document.getElementById('i').style.backgroundColor = 'rgb(0, 0, 255)';
+          if (getComputedStyle(document.getElementById('i')).color === 'rgb(20, 20, 19)') {
+              document.getElementById('i').style.color = 'rgb(250, 249, 245)';
+              document.getElementById('i').style.backgroundColor = 'rgb(24, 23, 21)';
           } else {
-              document.getElementById('i').style.color = 'rgb(255, 0, 0)';
-              document.getElementById('i').style.backgroundColor = 'rgb(255, 255, 0)';
+              document.getElementById('i').style.color = 'rgb(20, 20, 19)';
+              document.getElementById('i').style.backgroundColor = 'rgb(232, 224, 210)';
           }
       }"
-      /></section><aside class="lab-code" aria-label="INITIAL STYLE"><div class="lab-code-head"><span>INITIAL STYLE</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>color: rgb(0, 255, 0);
-background-color: blue;</code></pre></aside></div><section class="lab-panel lab-media" aria-labelledby="css-media-title"><p class="lab-kicker">02 / MORE CSS</p><h2 id="css-media-title">Textures &amp; shapes.</h2><p>A background image for writing and a rounded image, side by side.</p><div class="media-examples"><div><label class="sample-label" for="css-texture">BACKGROUND IMAGE · TYPE HERE</label><textarea id="css-texture" aria-label="CSS background example"
+      /></section><aside class="lab-code" aria-label="INITIAL STYLE"><div class="lab-code-head"><span>INITIAL STYLE</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>color: rgb(250, 249, 245);
+background-color: rgb(24, 23, 21);</code></pre></aside></div><section class="lab-panel lab-media" aria-labelledby="css-media-title"><p class="lab-kicker">02 / MORE CSS</p><h2 id="css-media-title">Textures &amp; shapes.</h2><p>A background image for writing and a rounded image, side by side.</p><div class="media-examples"><div><label class="sample-label" for="css-texture">BACKGROUND IMAGE · TYPE HERE</label><textarea id="css-texture" aria-label="CSS background example"
       style="
         background-image: url(&quot;assets/jpeg444.jpg&quot;);
         color: white;

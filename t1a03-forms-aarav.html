@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/spark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Forms &mdash; GameDev by Aarav</title>
+  </head>
+  <body>
+    <header class="exercise-header">
+      <a class="brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev <span class="brand-by">/ Aarav</span></a>
+      <a class="exercise-home" href="index.html#assignments">&larr; All assignments</a>
+    </header>
+    <main class="exercise-main">
+      <div class="exercise-intro">
+        <p class="eyebrow">ASSIGNMENT 03 / GAMEDEV 2026</p>
+        <h1>Forms</h1>
+        <p>Explore the controls that let a webpage collect information.</p>
+      </div>
+      <div class="lab-grid">
+        <section class="lab-panel" aria-labelledby="forms-title">
+          <p class="lab-kicker">01 / TRY IT</p>
+          <h2 id="forms-title">Build a player profile.</h2>
+          <p>Try the different controls, then preview your choices. Your information stays on this page.</p>
+          <form id="myForm" class="forms-demo">
+            <input type="hidden" name="profileType" value="Player profile" />
+            <label class="lab-label" for="myText01">First name</label>
+            <input id="myText01" name="firstName" type="text" value="Aarav" maxlength="60" required />
+            <fieldset>
+              <legend>Favorite snacks</legend>
+              <label><input type="checkbox" name="snack" value="Beef" /> Beef</label>
+              <label><input type="checkbox" name="snack" value="Vegetables" /> Vegetables</label>
+            </fieldset>
+            <fieldset>
+              <legend>Choose a radio station</legend>
+              <label><input type="radio" name="station" value="107.7" /> 107.7</label>
+              <label><input type="radio" name="station" value="83.5" /> 83.5</label>
+            </fieldset>
+            <label class="lab-label" for="myFile">Choose a file (optional)</label>
+            <input id="myFile" name="file" type="file" />
+            <label class="lab-label" for="mySelect01">Choose a message</label>
+            <select id="mySelect01" name="messageChoice">
+              <option value="">Choose an example</option>
+              <option value="Ready to play!">Ready to play!</option>
+              <option value="Let's explore.">Let's explore.</option>
+              <option value="Game on!">Game on!</option>
+            </select>
+            <label class="lab-label" for="myArea01">Profile message</label>
+            <textarea id="myArea01" name="message" rows="3">Hello, world!</textarea>
+            <div class="lab-actions">
+              <button type="button" id="myMessageButton">Write a message</button>
+              <button type="submit">Preview profile</button>
+              <button type="reset">Reset form</button>
+            </div>
+          </form>
+          <div class="lab-output"><span class="sample-label">PROFILE PREVIEW</span><div id="myFormOutput" aria-live="polite">Your choices will appear here.</div></div>
+        </section>
+        <aside class="lab-code" aria-label="Form example">
+          <div class="lab-code-head"><span>READING A FORM</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div>
+          <pre><code>const myData = new FormData(myForm);
+const myName = myData.get("firstName");
+const mySnacks = myData.getAll("snack");
+
+myOutput.textContent = myName;</code></pre>
+          <p>FormData reads named fields. <code>getAll()</code> collects every checked option with the same name.</p>
+        </aside>
+      </div>
+      <div class="lab-grid creative-lab niche-lab">
+        <section class="lab-panel" aria-labelledby="formdata-title">
+          <p class="lab-kicker">NICHE JAVASCRIPT / A CLOSER LOOK</p>
+          <h2 id="formdata-title">Collect multiple values.</h2>
+          <p>FormData.getAll() returns every value for a field name. Check one or both snacks above, then inspect the resulting array.</p>
+          <div class="lab-actions"><button type="button" id="myInspectSnacks">Inspect snacks</button></div>
+          <div class="lab-output"><span class="sample-label">RESULT</span><div id="mySnackOutput" aria-live="polite">Your selected snacks will appear here.</div></div>
+        </section>
+        <aside class="lab-code" aria-label="FormData getAll example"><div class="lab-code-head"><span>HOW IT WORKS</span><img class="lab-code-mark" src="assets/spark.svg" alt="" aria-hidden="true" /></div><pre><code>const myData = new FormData(myForm);
+const mySnacks = myData.getAll("snack");
+// One entry per checked snack</code></pre></aside>
+      </div>
+      <section class="lab-panel lesson-section assignment-checklist" aria-labelledby="checklist-title">
+        <p class="lab-kicker">THE TAKEAWAY</p>
+        <h2 id="checklist-title">What these examples show</h2>
+        <ul>
+          <li>Collect text, checkbox, radio, file, and selection input.</li>
+          <li>Use buttons to update, submit, and reset a form.</li>
+          <li>Read named fields with FormData and display a local preview.</li>
+        </ul>
+        <p>Learn more about <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms">HTML forms on MDN</a>.</p>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="index.html"><img class="brand-mark" src="assets/spark.svg" alt="" /> GameDev / Aarav</a><p>Made while learning, in 2026.</p></div></footer>
+    <script>
+      const myForm = document.getElementById("myForm");
+      const myOutput = document.getElementById("myFormOutput");
+      const myMessage = document.getElementById("myArea01");
+      document.getElementById("myMessageButton").onclick = () => { myMessage.value = "Ready to play!"; };
+      document.getElementById("mySelect01").onchange = (myEvent) => {
+        if (myEvent.target.value) myMessage.value = myEvent.target.value;
+      };
+      myForm.onsubmit = (myEvent) => {
+        myEvent.preventDefault();
+        const myData = new FormData(myForm);
+        const myName = String(myData.get("firstName")).trim();
+        if (!myName) {
+          myOutput.textContent = "Please enter your first name.";
+          return;
+        }
+        const mySnacks = myData.getAll("snack");
+        const myStation = myData.get("station") || "None selected";
+        const myFile = document.getElementById("myFile").files[0];
+        const myLines = [
+          "Name: " + myName,
+          "Snacks: " + (mySnacks.length ? mySnacks.join(", ") : "None selected"),
+          "Station: " + myStation,
+          "File: " + (myFile ? myFile.name : "None selected"),
+          "Message: " + (myMessage.value.trim() || "None"),
+        ];
+        myOutput.textContent = myLines.join("\n");
+      };
+      document.getElementById("myInspectSnacks").onclick = () => {
+        const mySnacks = new FormData(myForm).getAll("snack");
+        document.getElementById("mySnackOutput").textContent = JSON.stringify(mySnacks);
+      };
+      myForm.onreset = () => {
+        myOutput.textContent = "Your choices will appear here.";
+        document.getElementById("mySnackOutput").textContent = "Your selected snacks will appear here.";
+      };
+    </script>
+  </body>
+</html>
