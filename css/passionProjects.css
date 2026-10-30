@@ -1,0 +1,42 @@
+﻿/* Passion projects use the site's cream, coral, and dark surfaces. */
+.passion-main { max-width: 1040px; }
+.passion-intro { max-width: 760px; }
+.passion-intro > p:last-child { font-size: 18px; line-height: 1.55; }
+.passion-project { padding: clamp(24px, 4vw, 48px); }
+.passion-project-heading { display: flex; gap: 24px; justify-content: space-between; align-items: flex-start; }
+.passion-project-heading > div { max-width: 660px; }
+.passion-project-heading h2 { margin-bottom: 12px; }
+.passion-project-heading p:not(.lab-kicker) { margin: 12px 0 0; }
+.passion-mark { width: 36px; flex: 0 0 36px; }
+.passion-content { margin-top: 32px; }
+.passion-content .lab-label:not(:first-child) { margin-top: 16px; }
+.passion-content textarea, .passion-content select { display: block; width: 100%; max-width: 480px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--canvas); color: var(--ink); font: inherit; }
+.passion-content input:not([type=range]) { max-width: 480px; }
+.passion-board { display: grid; grid-template-columns: repeat(3, 72px); gap: 8px; margin-bottom: 16px; }
+body:not(.home) .passion-project .passion-cell, body:not(.home) .passion-project .passion-memory-card { width: 72px; height: 72px; padding: 0; background: var(--canvas); border: 1px solid var(--line); color: var(--ink); font: 400 28px/1 var(--serif); }
+.passion-playlist { max-width: 600px; padding-left: 24px; }
+.passion-playlist li { padding: 8px 0; }
+.passion-playlist li span { display: inline-block; min-width: 160px; max-width: 100%; overflow-wrap: anywhere; }
+body:not(.home) .passion-playlist button { margin: 4px 4px 4px 0; }
+body:not(.home) .passion-playlist button:disabled { color: var(--muted); background: var(--line); cursor: not-allowed; }
+.passion-badge, .passion-poster, .passion-pet, .passion-die { display: grid; place-items: center; max-width: 480px; margin-top: 24px; padding: 32px; border-radius: 12px; background: var(--dark); color: var(--canvas); font: 400 28px/1.2 var(--serif); text-align: center; overflow-wrap: anywhere; }
+.passion-poster { min-height: 180px; background: var(--cream-strong); color: var(--ink); font-size: 36px; }
+.passion-poster.poster-sans { font-family: var(--sans); }
+.passion-poster.poster-round { border-radius: 60px; }
+.passion-poster.poster-left { text-align: left; justify-items: start; }
+body:not(.home) .passion-canvas { display: block; width: 100%; max-width: 640px; height: auto; border: 1px solid var(--line); border-radius: 12px; touch-action: manipulation; }
+.passion-memory { display: grid; grid-template-columns: repeat(4, 72px); gap: 8px; margin-bottom: 16px; }
+.passion-next { margin-top: 48px; padding: 32px; border: 1px solid var(--line); border-radius: 12px; }
+.passion-next .eyebrow { margin-bottom: 16px; }
+.passion-next h2 { margin: 0; font: 400 36px/1.15 var(--serif); letter-spacing: -.5px; color: var(--ink); }
+.passion-next p:not(.eyebrow) { margin: 12px 0 16px; }
+.passion-next a { color: var(--coral-active); }
+@media (max-width: 400px) { .passion-memory { grid-template-columns: repeat(4, minmax(0, 1fr)); } body:not(.home) .passion-project .passion-memory-card { width: 100%; } }
+.game-display { display: grid; place-items: center; min-height: 108px; max-width: 640px; margin-bottom: 24px; padding: 20px; border-radius: 12px; background: var(--dark); color: var(--canvas); text-align: center; overflow-wrap: anywhere; font: 400 28px/1.25 var(--serif); }
+.game-patterns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 640px; }
+.game-patterns .passion-poster { min-height: 130px; margin-top: 8px; padding: 20px; }
+.game-choices button { min-width: 80px; }
+.game-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
+.game-dpad { display: flex; gap: 6px; flex-wrap: wrap; }
+body:not(.home) .game-dpad button { width: 48px; height: 48px; padding: 0; background: var(--canvas); color: var(--ink); border: 1px solid var(--line); font-size: 20px; }
+.game-hint { color: var(--muted); font-size: 12px; letter-spacing: 1px; margin: 12px 0 0; }
